@@ -70,7 +70,7 @@ def main():
     try:
         cagr = getAnnualReturn(df, year1, year2)
         # TODO Comprendre pourquoi je n'arrive pas au rendement annuel de Vanguard et Yahoo (12.65% pour 2014)
-        print(cagr)
+        print('{:2.2f}%' .format(cagr*100))
     except Exception:
         print('Error with dates')
 
