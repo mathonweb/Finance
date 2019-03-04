@@ -10,6 +10,10 @@
 
 from share import Share
 from share import validate_date
+from share import COMMISSION
+from share import TRANSACTION_DATE
+from share import NUMBER
+from share import PRICE
 
 # Contains method for share status snapshot in time
 
@@ -28,10 +32,10 @@ class ShareUtils(Share):
 
         total_cost = 0
         for transaction in self.transactions:
-            if transaction[0] <= transaction_date:
-                if transaction[2] > 0:
+            if transaction[TRANSACTION_DATE] <= transaction_date:
+                if transaction[NUMBER] > 0:
                     # Add the total price and the commission
-                    total_cost = total_cost + transaction[1] * transaction[2] + transaction[3]
+                    total_cost = total_cost + transaction[PRICE] * transaction[NUMBER] + transaction[COMMISSION]
         mean_cost = total_cost / self.get_share_nb(transaction_date)
 
         return mean_cost
@@ -47,7 +51,7 @@ class ShareUtils(Share):
 
         share_nb = 0
         for transaction in self.transactions:
-            if transaction[0] <= transaction_date:
-                share_nb += transaction[2]
+            if transaction[TRANSACTION_DATE] <= transaction_date:
+                share_nb += transaction[NUMBER]
 
         return share_nb

@@ -9,6 +9,7 @@
 # -------------------------------------------------------------------------------
 
 from datetime import date
+from enum import Enum
 
 # Contains the transaction informations related to a specific share
 
@@ -56,7 +57,7 @@ class Share:
 
         index2delete = list()
         for transaction in self.transactions:
-            if transaction[0] == transaction_date:
+            if transaction[TRANSACTION_DATE] == transaction_date:
                 index2delete.append(transaction)
         deleted_transaction_count = len(index2delete)
 
@@ -78,7 +79,7 @@ class Share:
 
         index2return = list()
         for transaction in self.transactions:
-            if transaction[0] == transaction_date:
+            if transaction[TRANSACTION_DATE] == transaction_date:
                 index2return.append(transaction)
         index_to_return_count = len(index2return)
 
@@ -90,6 +91,13 @@ class Share:
             return False
 
         return self.transactions[self.transactions.index(index2return[0])]
+
+
+# Constants for reference on share transaction elements
+TRANSACTION_DATE = 0
+PRICE = 1
+NUMBER = 2
+COMMISSION = 3
 
 
 def validate_date(date_to_validate):
