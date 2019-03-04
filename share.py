@@ -9,7 +9,6 @@
 # -------------------------------------------------------------------------------
 
 from datetime import date
-from enum import Enum
 
 # Contains the transaction informations related to a specific share
 
