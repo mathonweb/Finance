@@ -8,13 +8,16 @@
 # Copyright:    (c) Mathieu Guilbault 2019
 #-------------------------------------------------------------------------------
 
-import datetime
+from datetime import date
+from share import Share
 
 # Scientific computing package
 import pandas as pd
 
+
 def isNaN(num):
     return num != num
+
 
 def getFloorDate(df, date):
     # Return the floor date closest to the selected date
@@ -59,8 +62,8 @@ def getAnnualReturn(df, year1, year2):
 
 
 def main():
-    f = 'Historical_data/VUS.TO.csv'
-    df = pd.read_csv(f, index_col='Date', parse_dates=True, na_values='nan')
+    file = 'Historical_data/VUS.TO.csv'
+    df = pd.read_csv(file, index_col='Date', parse_dates=True, na_values='nan')
 
     year1 = 2014
     year2 = 2014
@@ -73,6 +76,26 @@ def main():
         print('{:2.2f}%' .format(cagr*100))
     except Exception:
         print('Error with dates')
+
+    fnb1 = Share(date(2014, 1, 1), 10, 10)
+    fnb1.add_transaction(date(2017, 1, 1), 20, 5)
+    fnb1.add_transaction(date(2018, 1, 1), 30, 7)
+
+    for transaction in fnb1.transactions:
+        print(transaction)
+
+    fnb1.remove_transaction(date(2017, 1, 1))
+
+    print("After transaction deletion")
+    try:
+        for transaction in fnb1.transactions:
+            print(transaction)
+    except Exception as e:
+        print(e)
+
+    last_transaction = fnb1.get_transaction(date(2018, 1, 1))
+
+    print("Last transaction = ", last_transaction)
 
 
 if __name__ == '__main__':
