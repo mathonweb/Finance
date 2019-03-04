@@ -1,4 +1,4 @@
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 # Name:         share
 # Purpose:      Class defining a share components
 #
@@ -6,39 +6,53 @@
 #
 # Created:      2019-02-10
 # Copyright:    (c) Mathieu Guilbault 2019
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 
-import datetime
+from datetime import date
 
-# Describe the share class
+# Contains the transaction informations related to a specific share
 
 
 class Share:
-    def __init__(self, transaction_date, price, number):
-        self.transactions = [[transaction_date, price, number]]
-
-    def add_transaction(self, transaction_date, price, number):
+    def __init__(self, transaction_date, price, number, commission):
         # Validate the transaction date
-        if transaction_date > datetime.date.today():
-            raise NameError('InvalidTransactionDate')
-            return
+        validate_date(transaction_date)
         # Validate the price
-        if price < 0:
-            raise NameError('InvalidPrice')
-            return
-        # Validate the number of share
-        if number < 0:
-            raise NameError('InvalidNumberOfShare')
-            return
+        validate_price(price)
+        # Validate the commission
+        validate_price(commission)
+        self.transactions = [[transaction_date, price, number, commission]]
 
-        self.transactions.append([transaction_date, price, number])
+    def add_transaction(self, transaction_date, price, number, commission):
+        """
+        :param transaction_date:
+        :param price:
+        :param number:
+        :param commission:
+        :return:
+        """
+
+        # Validate the transaction date
+        validate_date(transaction_date)
+
+        # Validate the price
+        validate_price(price)
+
+        # Validate the commission
+        validate_price(commission)
+
+        self.transactions.append([transaction_date, price, number, commission])
         self.transactions.sort()
 
+        return True
+
     def remove_transaction(self, transaction_date):
+        """
+        :param transaction_date:
+        :return:
+        """
         # Validate the transaction date
-        if transaction_date > datetime.date.today():
-            raise NameError('InvalidTransactionDate')
-            return
+        validate_date(transaction_date)
 
         index2delete = list()
         for transaction in self.transactions:
@@ -48,30 +62,43 @@ class Share:
 
         if deleted_transaction_count > 1:
             raise NameError('MultipleRemove')
-            return
+            return False
 
         del self.transactions[self.transactions.index(index2delete[0])]
 
+        return True
+
     def get_transaction(self, transaction_date):
+        """
+        :param transaction_date:
+        :return:
+        """
         # Validate the transaction date
-        if transaction_date > datetime.date.today():
-            raise NameError('InvalidTransactionDate')
-            return
+        validate_date(transaction_date)
 
         index2return = list()
         for transaction in self.transactions:
             if transaction[0] == transaction_date:
                 index2return.append(transaction)
         index_to_return_count = len(index2return)
+
+        if index_to_return_count == 0:
+            raise NameError('MissingTransaction')
+            return False
         if index_to_return_count > 1:
             raise NameError('MultipleGet')
-            return
+            return False
 
         return self.transactions[self.transactions.index(index2return[0])]
 
-    def get_mean_cost(self):
-        pass
 
-    def get_share_nb(self):
-        pass
+def validate_date(date_to_validate):
+    if date_to_validate > date.today():
+        raise NameError('InvalidTransactionDate')
+        return False
 
+
+def validate_price(price_to_validate):
+    if price_to_validate < 0:
+        raise NameError('InvalidPrice')
+        return False
