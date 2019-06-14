@@ -1,8 +1,7 @@
 # -------------------------------------------------------------------------------
 # Name:         transactions_utils
-# Purpose:      Create the objects associated to every quotes
-#               Manage the transactions
-#               Create or update the transactions sheet
+# Purpose:      Create a dataframes with all transactions
+#               Return info from the transactions
 #
 # Author:       Mathieu Guilbault
 #
@@ -10,39 +9,56 @@
 # Copyright:    (c) Mathieu Guilbault 2019
 # -------------------------------------------------------------------------------
 from datetime import date
-from share_utils import ShareUtils
+import os
+import pandas as pd
+
+
+class TransactionsUtils:
+    def __init__(self, file):
+        self.transactions_df = self.read_transactions(file)
+        self.format_date()
+        self.validate_transaction()
+
+    def read_transactions(self, file):
+        # Create a pandas dataframe
+        #    Ticker   Date        Price   Quantity    Commission
+        # 0  XEF.TO   01/01/2017  10.9    5         9.99
+
+        transactions_df = pd.read_csv(file, index_col="Ticker")
+        return transactions_df
+
+    def format_date(self):
+        for index, row in self.transactions_df.iterrows():
+            # Convert Excel date format into list of integers
+            date_string = [int(i) for i in row['Date'].split('/')]
+
+            self.transactions_df.at[index, 'Date'] = date(date_string[2], date_string[1], date_string[0])
+
+    def validate_transaction(self):
+        for index, row in self.transactions_df.iterrows():
+            if not(row['Date'] <= date.today() and
+                   row['Price'] > 0 and
+                   row['Quantity'] != 0):
+                raise NameError('InvalidTransactionInfo')
+                print("Please, fix your transaction info")
+                exit(1)
+
+    def get_transactions_number(self):
+        return len(self.transactions_df)
 
 
 def main():
 
-    fnb1 = ShareUtils(date(2014, 1, 1), 10, 10, 9.99)
-    fnb1.add_transaction(date(2017, 1, 1), 20, 5, 9.99)
-    fnb1.add_transaction(date(2018, 1, 1), 30, 7, 9.99)
-    fnb1.add_transaction(date(2019, 1, 1), 30, 9, 9.99)
-
-    for transaction in fnb1.transactions:
-        print(transaction)
-
-    fnb1.remove_transaction(date(2018, 1, 1))
-
-    print("After transaction deletion")
+    # Read the transactions.txt file if exist, otherwise create it
     try:
-        for transaction in fnb1.transactions:
-            print(transaction)
+        file = str(os.environ['TRANSACTIONS_PATH']) + "\\" + "transactions.csv"
     except Exception as e:
         print(e)
 
-    last_transaction = fnb1.get_transaction(date(2017, 1, 1))
+    # Create an instance of Transactions Utils
+    transactions_list = TransactionsUtils(file)
 
-    print("Last transaction = ", last_transaction)
-
-    nb_of_shares = fnb1.get_share_nb(date(2019, 1, 1))
-
-    print("Nb of shares = ", nb_of_shares)
-
-    mean_cost = fnb1.get_mean_cost(date(2019, 1, 1))
-
-    print("Mean cost = {0:.2f}".format(mean_cost))
+    print(transactions_list.get_transactions_number())
 
 
 if __name__ == '__main__':

@@ -9,54 +9,59 @@
 #-------------------------------------------------------------------------------
 
 from datetime import datetime
+from transactions_utils import TransactionsUtils
 # Scientific computing package
 import pandas as pd
 
 
-def isNaN(num):
-    return num != num
+class FinanceUtils:
+    def __init__(self):
 
 
-def getFloorDate(df, date):
-    # Return the floor date closest to the selected date
-    date2find = date
-    i = datetime.timedelta(0)
-    while date2find.strftime("%Y%m%d") not in df.index:
-        i = i - datetime.timedelta(1)
-        date2find = date + i
-    print(date2find)
-    return date2find
+    def isNaN(num):
+        return num != num
 
 
-def getCeilDate(df, date):
-    # Return the floor date closest to the selected date
-    date2find = date
-    i = datetime.timedelta(0)
-    while date2find.strftime("%Y%m%d") not in df.index:
-        i = i + datetime.timedelta(1)
-        date2find = date + i
-    print(date2find)
-    return date2find
+    def getFloorDate(df, date):
+        # Return the floor date closest to the selected date
+        date2find = date
+        i = datetime.timedelta(0)
+        while date2find.strftime("%Y%m%d") not in df.index:
+            i = i - datetime.timedelta(1)
+            date2find = date + i
+        print(date2find)
+        return date2find
 
 
-def getAnnualReturn(df, year1, year2):
+    def getCeilDate(df, date):
+        # Return the floor date closest to the selected date
+        date2find = date
+        i = datetime.timedelta(0)
+        while date2find.strftime("%Y%m%d") not in df.index:
+            i = i + datetime.timedelta(1)
+            date2find = date + i
+        print(date2find)
+        return date2find
 
-    # Return the first date of the year 1
-    date1 = getFloorDate(df, datetime.date(year1, 1, 1))
 
-    # Return the last date of the year 2
-    date2 = getCeilDate(df, datetime.date(year2, 12, 31))
+    def getAnnualReturn(df, year):
 
-    # Do the calculation if year2 is after year1
-    if date2 < date1:
-        print("Error: You must enter and ending year later than the first year")
-        raise Exception('dateError')
+        # Return the first date of the year 1
+        date1 = getFloorDate(df, datetime.date(year1, 1, 1))
 
-    # Compound Annual Growth Rate
-    # CAGR = (Ending Value / Beginning Value) ^ (1 / # of years) - 1
-    cagr = df.loc[date2.strftime("%Y%m%d"), 'Adj Close'] / df.loc[date1.strftime("%Y%m%d"), 'Adj Close'] - 1
+        # Return the last date of the year 2
+        date2 = getCeilDate(df, datetime.date(year2, 12, 31))
 
-    return cagr
+        # Do the calculation if year2 is after year1
+        if date2 < date1:
+            print("Error: You must enter and ending year later than the first year")
+            raise Exception('dateError')
+
+        # Compound Annual Growth Rate
+        # CAGR = (Ending Value / Beginning Value) ^ (1 / # of years) - 1
+        cagr = df.loc[date2.strftime("%Y%m%d"), 'Adj Close'] / df.loc[date1.strftime("%Y%m%d"), 'Adj Close'] - 1
+
+        return cagr
 
 
 def main():
