@@ -90,7 +90,7 @@ def main():
     # Create an instance of Transactions Utils
     transactions_list = TransactionsUtils(file).get_transactions()
 
-    my_date = date(2018, 1, 1)
+    my_date = date(2019, 1, 1)
 
     share_xef = ShareUtils(transactions_list, "XEF.TO", my_date)
     print("Number of shares = " + str(share_xef.get_share_nb()))

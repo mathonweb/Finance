@@ -36,4 +36,7 @@ class ShareUtils:
         return total_cost
 
     def get_mean_cost(self):
-        return "{:.2f}".format(self.total_cost / self.share_nb)
+        if self.share_nb == 0:
+            return 0
+        else:
+            return "{:.2f}".format(self.total_cost / self.share_nb)
