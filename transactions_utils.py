@@ -17,7 +17,8 @@ class TransactionsUtils:
     def __init__(self, file):
         self.transactions_df = self.read_transactions(file)
         self.format_date()
-        self.validate_transaction()
+        self.validate_transactions()
+        self.sort_transactions()
 
     def read_transactions(self, file):
         # Create a pandas dataframe
@@ -28,13 +29,15 @@ class TransactionsUtils:
         return transactions_df
 
     def format_date(self):
+        row_no = 0
         for index, row in self.transactions_df.iterrows():
             # Convert Excel date format into list of integers
             date_string = [int(i) for i in row['Date'].split('/')]
+            row['Date'] = date(date_string[2], date_string[1], date_string[0])
+            self.transactions_df.iloc[row_no] = row
+            row_no += 1
 
-            self.transactions_df.at[index, 'Date'] = date(date_string[2], date_string[1], date_string[0])
-
-    def validate_transaction(self):
+    def validate_transactions(self):
         for index, row in self.transactions_df.iterrows():
             if not(row['Date'] <= date.today() and
                    row['Price'] > 0 and
@@ -42,6 +45,12 @@ class TransactionsUtils:
                 raise NameError('InvalidTransactionInfo')
                 print("Please, fix your transaction info")
                 exit(1)
+
+    def sort_transactions(self):
+        self.transactions_df.sort_values(by='Date')
+
+    def get_transactions(self):
+        return self.transactions_df
 
     def get_transactions_number(self):
         return len(self.transactions_df)

@@ -8,47 +8,32 @@
 # Copyright:    (c) Mathieu Guilbault 2019
 # -------------------------------------------------------------------------------
 
+
 class ShareUtils:
-    def __init__(self, transactions_df, historical_df, ticker, date):
+    def __init__(self, transactions_df, ticker, date):
         self.ticker = ticker
         self.date = date
-        self.share_nb = 0
-        self.mean_cost = 0
-        self.total_cost = 0
+        self.transactions = self.get_transactions(transactions_df)
+        self.share_nb = self.get_share_nb()
+        self.total_cost = self.get_total_cost()
+        self.mean_cost = self.get_mean_cost()
         self.actual_price = 0
         self.market_value = 0
         self.profit = 0
         self.pourcentage_profit = 0
 
-    def get_share_nb(self, transactions_df):
-        """
-        :param transaction_date:
-        :return:
-        """
+    def get_transactions(self, transactions_df):
+        all_transactions = transactions_df.loc[self.ticker]
+        return all_transactions[all_transactions['Date'] <= self.date]
 
-        for index, row in self.transactions_df.iterrows():
-            if row['Ticker'] == self.ticker:
+    def get_share_nb(self):
+        return self.transactions['Quantity'].sum()
 
-        #share_nb = 0
-        #for transaction in self.transactions:
-        #    if transaction[TRANSACTION_DATE] <= transaction_date:
-        #        share_nb += transaction[NUMBER]
-        #
-        #return share_nb
+    def get_total_cost(self):
+        total_cost = 0
+        for index, row in self.transactions.iterrows():
+            total_cost = total_cost + row['Price'] * row['Quantity'] + row['Commission']
+        return total_cost
 
-    def get_mean_cost(self, transactions_df):
-        """
-        :param transaction_date:
-        :return:
-        """
-        self.mean_cost = 0
-
-        #total_cost = 0
-        #for transaction in self.transactions:
-        #    if transaction[TRANSACTION_DATE] <= transaction_date:
-        #        if transaction[NUMBER] > 0:
-        #            # Add the total price and the commission
-        #            total_cost = total_cost + transaction[PRICE] * transaction[NUMBER] + transaction[COMMISSION]
-        #mean_cost = total_cost / self.get_share_nb(transaction_date)
-        #
-        #return mean_cost
+    def get_mean_cost(self):
+        return "{:.2f}".format(self.total_cost / self.share_nb)
