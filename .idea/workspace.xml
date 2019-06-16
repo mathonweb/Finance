@@ -2,6 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a25921ba-c81e-42d9-a0b9-d03123b04bbb" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/historical_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Financial_perf.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Financial_perf.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finance_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/finance_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/share_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/share_utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,10 +20,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/finance_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="92" column="23" selection-start-line="92" selection-start-column="23" selection-end-line="92" selection-end-column="23" />
+            <state relative-caret-position="422">
+              <caret line="96" column="75" lean-forward="true" selection-start-line="96" selection-start-column="75" selection-end-line="96" selection-end-column="75" />
               <folding>
-                <element signature="e#346#375#0" expanded="true" />
+                <element signature="e#346#371#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -27,19 +32,78 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/share_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+            <state relative-caret-position="201">
+              <caret line="31" column="43" lean-forward="true" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/getFinanceData.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1904">
+              <caret line="112" selection-start-line="112" selection-end-line="112" />
+              <folding>
+                <element signature="e#362#371#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/stock_db_mgr.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="650">
+              <caret line="272" column="46" selection-start-line="272" selection-start-column="46" selection-end-line="272" selection-end-column="46" />
+              <folding>
+                <element signature="e#325#334#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yahoo-historical/setup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="25" column="43" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yahoo-historical/yahoo_historical/fetch.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="592">
+              <caret line="60" column="17" selection-start-line="60" selection-start-column="15" selection-end-line="60" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yahoo-historical/README.rst">
+          <provider selected="true" editor-type-id="restructured-text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/transactions_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-173">
-              <caret line="32" column="58" lean-forward="true" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="58" />
+            <state relative-caret-position="-51">
+              <caret line="12" selection-start-line="12" selection-end-line="12" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/historical_utils.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
               <folding>
-                <element signature="e#465#490#0" expanded="true" />
+                <element signature="e#415#440#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -73,16 +137,16 @@
       <find>loadDataFrame</find>
       <find>updateAllSymbols</find>
       <find>symbolToFilename</find>
-      <find>CStockDBMgr</find>
       <find>symbol</find>
       <find>getSymbolData</find>
       <find>convExcel2Dataframe</find>
       <find>barArray</find>
       <find>np</find>
       <find>getAllSymbolsAvailable</find>
-      <find>downloadData</find>
       <find>pd</find>
       <find>year1</find>
+      <find>CStockDBMgr</find>
+      <find>downloadData</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -96,6 +160,7 @@
         <option value="$PROJECT_DIR$/getFinanceData.py" />
         <option value="$PROJECT_DIR$/share.py" />
         <option value="$PROJECT_DIR$/transactions_utils.py" />
+        <option value="$PROJECT_DIR$/historical_utils.py" />
         <option value="$PROJECT_DIR$/share_utils.py" />
         <option value="$PROJECT_DIR$/finance_utils.py" />
       </list>
@@ -123,6 +188,17 @@
             </path>
             <path>
               <item name="Finance" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Finance" type="462c0819:PsiDirectoryNode" />
+              <item name="yahoo-historical" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Finance" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Finance" type="462c0819:PsiDirectoryNode" />
+              <item name="yahoo-historical" type="462c0819:PsiDirectoryNode" />
+              <item name="yahoo_historical" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Finance" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -133,8 +209,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/Formation/Python/PythonTraining" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -146,6 +222,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Mathieu\Projets\Finance" />
       <recent name="C:\Users\Mathieu\Projets\fin_performance" />
     </key>
   </component>
@@ -204,7 +281,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="stock_db_mgr" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="historical_utils" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Financial_perf" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -216,7 +293,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/stock_db_mgr.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/historical_utils.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="setup" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Financial_perf" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/yahoo-historical" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/yahoo-historical/setup.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -249,15 +347,17 @@
     <list>
       <item itemvalue="Python.finance_utils" />
       <item itemvalue="Python.getFinanceData" />
-      <item itemvalue="Python.stock_db_mgr" />
       <item itemvalue="Python.transactions_utils" />
+      <item itemvalue="Python.setup" />
+      <item itemvalue="Python.historical_utils" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.finance_utils" />
-        <item itemvalue="Python.transactions_utils" />
+        <item itemvalue="Python.historical_utils" />
+        <item itemvalue="Python.setup" />
         <item itemvalue="Python.getFinanceData" />
-        <item itemvalue="Python.stock_db_mgr" />
+        <item itemvalue="Python.transactions_utils" />
       </list>
     </recent_temporary>
   </component>
@@ -361,16 +461,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/pandas/lib.py" />
-    <entry file="file://$PROJECT_DIR$/stock_db_mgr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4318">
-          <caret line="258" column="25" selection-start-line="258" selection-start-column="12" selection-end-line="258" selection-end-column="25" />
-          <folding>
-            <element signature="e#325#334#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3/datetime.pyi">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-408">
@@ -412,16 +502,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/getFinanceData.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="55" column="42" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="42" />
-          <folding>
-            <element signature="e#362#371#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/share.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -429,29 +509,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/yahoo-historical/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="43" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yahoo-historical/yahoo_historical/fetch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="592">
+          <caret line="60" column="17" selection-start-line="60" selection-start-column="15" selection-end-line="60" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yahoo-historical/README.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stock_db_mgr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="272" column="46" selection-start-line="272" selection-start-column="46" selection-end-line="272" selection-end-column="46" />
+          <folding>
+            <element signature="e#325#334#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/getFinanceData.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1904">
+          <caret line="112" selection-start-line="112" selection-end-line="112" />
+          <folding>
+            <element signature="e#362#371#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/transactions_utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-173">
-          <caret line="32" column="58" lean-forward="true" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="58" />
-          <folding>
-            <element signature="e#465#490#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-51">
+          <caret line="12" selection-start-line="12" selection-end-line="12" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/share_utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+        <state relative-caret-position="201">
+          <caret line="31" column="43" lean-forward="true" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/historical_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+          <folding>
+            <element signature="e#415#440#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/finance_utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="92" column="23" selection-start-line="92" selection-start-column="23" selection-end-line="92" selection-end-column="23" />
+        <state relative-caret-position="422">
+          <caret line="96" column="75" lean-forward="true" selection-start-line="96" selection-start-column="75" selection-end-line="96" selection-end-column="75" />
           <folding>
-            <element signature="e#346#375#0" expanded="true" />
+            <element signature="e#346#371#0" expanded="true" />
           </folding>
         </state>
       </provider>
