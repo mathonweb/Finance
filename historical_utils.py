@@ -10,6 +10,7 @@
 # -------------------------------------------------------------------------------
 from datetime import date
 import pandas as pd
+# https://github.com/AndrewRPorter/yahoo-historical
 from yahoo_historical import Fetcher
 
 
