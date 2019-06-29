@@ -26,6 +26,8 @@ class ShareUtils:
 
     def get_transactions(self, transactions_df):
         all_transactions = pd.DataFrame(transactions_df.loc[self.ticker])
+        print(all_transactions)
+        # Problem - Does not support 1 line DataFrame
         return all_transactions[all_transactions['Date'] <= self.date]
 
     def get_transactions_number(self):

@@ -21,11 +21,11 @@ class FinanceUtils:
     def __init__(self):
         pass
 
-    #def isnan(num):
+    # def isnan(num):
     #    return num != num
     #
     #
-    #def getfloordate(df, date):
+    # def getfloordate(df, date):
     #    # return the floor date closest to the selected date
     #    date2find = date
     #    i = datetime.timedelta(0)
@@ -36,7 +36,7 @@ class FinanceUtils:
     #    return date2find
     #
     #
-    #def getceildate(df, date):
+    # def getceildate(df, date):
     #    # return the floor date closest to the selected date
     #    date2find = date
     #    i = datetime.timedelta(0)
@@ -47,7 +47,7 @@ class FinanceUtils:
     #    return date2find
     #
     #
-    #def getannualreturn(df, year):
+    # def getannualreturn(df, year):
     #
     #    # return the first date of the year 1
     #    date1 = getfloordate(df, datetime.date(year1, 1, 1))
@@ -68,23 +68,23 @@ class FinanceUtils:
 
 
 def main():
-    #file = 'historical_data/vus.to.csv'
-    #df = pd.read_csv(file, index_col='date', parse_dates=True, na_values='nan')
+    # file = 'historical_data/vus.to.csv'
+    # df = pd.read_csv(file, index_col='date', parse_dates=True, na_values='nan')
 
-    #year1 = 2014
-    #year2 = 2014
+    # year1 = 2014
+    # year2 = 2014
     #
     ## todo validate year available in the excel files
     #
-    #try:
+    # try:
     #    cagr = getannualreturn(df, year1, year2)
     #    # todo comprendre pourquoi je n'arrive pas au rendement annuel de vanguard et yahoo (12.65% pour 2014)
     #    print('{:2.2f}%' .format(cagr*100))
-    #except exception:
+    # except exception:
     #    print('error with dates')
 
     try:
-        file = str(os.environ['transactions_path']) + "\\" + "transactions.csv"
+        file = str(os.environ['INVESTING_PATH']) + "\\" + "transactions.csv"
     except Exception as e:
         print(e)
 
