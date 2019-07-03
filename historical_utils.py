@@ -10,6 +10,7 @@
 # -------------------------------------------------------------------------------
 import os
 from datetime import date
+from datetime import timedelta
 from pathlib import Path
 
 import pandas as pd
@@ -24,7 +25,7 @@ class HistoricalUtils:
         self.start_date = ""
         self.end_date = ""
         self.read_historical(ticker, start_date, end_date)
-        self.format_date()
+        self.format_dates()
 
     def read_historical(self, ticker, start_date, end_date):
 
@@ -34,13 +35,15 @@ class HistoricalUtils:
             historical_df = pd.read_csv(file_name)
 
             # Verify if dates are covered by the start date and end date
-            min_date_string = historical_df["Date"].iloc[0].split('-')
-            min_date = date(int(min_date_string[0]), int(min_date_string[1]), int(min_date_string[2]))
-            max_date_string = historical_df["Date"].iloc[-1].split('-')
-            max_date = date(int(max_date_string[0]), int(max_date_string[1]), int(max_date_string[2]))
+            min_date_string = historical_df["Date"].iloc[0]
+            min_date = self.string_to_date(min_date_string)
+            max_date_string = historical_df["Date"].iloc[-1]
+            max_date = self.string_to_date(max_date_string)
 
-            if date(start_date[0], start_date[1], start_date[2]) >= min_date and date(end_date[0], end_date[1],
-                                                                                      end_date[2]) <= max_date:
+            start_trading_date = self.list_to_date(start_date)
+            end_trading_date = self.list_to_date(end_date)
+
+            if start_trading_date >= min_date and end_trading_date <= max_date:
                 # Set possible start date
                 self.start_date = min_date
                 # Set possible end date
@@ -58,41 +61,57 @@ class HistoricalUtils:
 
         self.historical_df = historical_df
 
-    def format_date(self):
+    def format_dates(self):
         row_no = 0
         for index, row in self.historical_df.iterrows():
             # Convert Excel date format into list of integers
             date_string = [int(i) for i in row['Date'].split('-')]
-            row['Date'] = date(date_string[0], date_string[1], date_string[2])
+            row['Date'] = self.list_to_date(date_string)
             self.historical_df.iloc[row_no] = row
             row_no += 1
 
-    def get_date(self):
+    def string_to_date(self, trading_date):
+        trading_date_split = trading_date.split('-')
+        return date(int(trading_date_split[0]), int(trading_date_split[1]), int(trading_date_split[2]))
+
+    def list_to_date(self, trading_date):
+        return date(int(trading_date[0]), int(trading_date[1]), int(trading_date[2]))
+
+    def get_start_date(self):
+        return self.start_date
+
+    def get_end_date(self):
+        return self.end_date
+
+    def get_closest_date(self, trading_date):
+        return max(filter(lambda x: x <= trading_date, self.historical_df["Date"]))
+
+    def get_open_price(self, trading_date):
         pass
 
-    def get_open_price(self, date):
+    def get_high_price(self, trading_date):
         pass
 
-    def get_high_price(self, date):
+    def get_low_price(self, trading_date):
         pass
 
-    def get_low_price(self, date):
+    def get_close_price(self, trading_date):
         pass
 
-    def get_close_price(self, date):
+    def get_adj_close_price(self, trading_date):
         pass
 
-    def get_adj_close_price(self, date):
-        pass
-
-    def get_volume(self, date):
+    def get_volume(self, trading_date):
         pass
 
 
 def main():
 
     # Create an instance of Historical Utils
-    historical_list = HistoricalUtils("VUS.TO", [2012, 1, 24], [2019, 1, 1])
+    historical_list = HistoricalUtils("VUS.TO", [2012, 1, 24], [2019, 2, 27])
+
+    closest_date = historical_list.get_closest_date(date(2012, 4, 5))
+    print(closest_date)
 
 
 if __name__ == '__main__':
