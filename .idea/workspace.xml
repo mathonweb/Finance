@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a25921ba-c81e-42d9-a0b9-d03123b04bbb" name="Default" comment="Fix method to read the historical data from yahoo">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/historical_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/historical_utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,8 +78,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/historical_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="85" column="45" lean-forward="true" selection-start-line="85" selection-start-column="45" selection-end-line="85" selection-end-column="45" />
+            <state relative-caret-position="425">
+              <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
               <folding>
                 <element signature="e#411#420#0" expanded="true" />
               </folding>
@@ -566,8 +565,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/historical_utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="85" column="45" lean-forward="true" selection-start-line="85" selection-start-column="45" selection-end-line="85" selection-end-column="45" />
+        <state relative-caret-position="425">
+          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
           <folding>
             <element signature="e#411#420#0" expanded="true" />
           </folding>

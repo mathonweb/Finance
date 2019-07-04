@@ -10,7 +10,6 @@
 # -------------------------------------------------------------------------------
 import os
 from datetime import date
-from datetime import timedelta
 from pathlib import Path
 
 import pandas as pd
@@ -67,7 +66,7 @@ class HistoricalUtils:
             # Convert Excel date format into list of integers
             date_string = [int(i) for i in row['Date'].split('-')]
             row['Date'] = self.list_to_date(date_string)
-            self.historical_df.iloc[row_no] = row
+            self.historical_df.loc[row_no] = row
             row_no += 1
 
     def string_to_date(self, trading_date):
@@ -86,23 +85,31 @@ class HistoricalUtils:
     def get_closest_date(self, trading_date):
         return max(filter(lambda x: x <= trading_date, self.historical_df["Date"]))
 
+    def get_item(self, trading_date, item):
+        closest_date = self.get_closest_date(trading_date)
+        item_value = 0
+        for index, row in self.historical_df.iterrows():
+            if row["Date"] == closest_date:
+                item_value = row[item]
+        return item_value
+
     def get_open_price(self, trading_date):
-        pass
+        return self.get_item(trading_date, 'Open')
 
     def get_high_price(self, trading_date):
-        pass
+        return self.get_item(trading_date, 'High')
 
     def get_low_price(self, trading_date):
-        pass
+        return self.get_item(trading_date, 'Low')
 
     def get_close_price(self, trading_date):
-        pass
+        return self.get_item(trading_date, 'Close')
 
     def get_adj_close_price(self, trading_date):
-        pass
+        return self.get_item(trading_date, 'Adj Close')
 
     def get_volume(self, trading_date):
-        pass
+        return self.get_item(trading_date, 'Volume')
 
 
 def main():
@@ -111,7 +118,13 @@ def main():
     historical_list = HistoricalUtils("VUS.TO", [2012, 1, 24], [2019, 2, 27])
 
     closest_date = historical_list.get_closest_date(date(2012, 4, 5))
-    print(closest_date)
+    print("Closest date = " + str(closest_date))
+    print("Open price = " + str(historical_list.get_open_price(closest_date)))
+    print("High price = " + str(historical_list.get_high_price(closest_date)))
+    print("Low price = " + str(historical_list.get_low_price(closest_date)))
+    print("Close price = " + str(historical_list.get_close_price(closest_date)))
+    print("Adjusted closed price = " + str(historical_list.get_adj_close_price(closest_date)))
+    print("Volume = " + str(historical_list.get_volume(closest_date)))
 
 
 if __name__ == '__main__':
