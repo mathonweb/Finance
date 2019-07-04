@@ -39,10 +39,7 @@ class HistoricalUtils:
             max_date_string = historical_df["Date"].iloc[-1]
             max_date = self.string_to_date(max_date_string)
 
-            start_trading_date = self.list_to_date(start_date)
-            end_trading_date = self.list_to_date(end_date)
-
-            if start_trading_date >= min_date and end_trading_date <= max_date:
+            if start_date >= min_date and end_date <= max_date:
                 # Set possible start date
                 self.start_date = min_date
                 # Set possible end date
@@ -53,7 +50,7 @@ class HistoricalUtils:
                 return 0
 
         # If not, download the historical data from Yahoo
-        historical_df = Fetcher(ticker, start_date, end_date).getHistorical()
+        historical_df = Fetcher(ticker, self.date_to_list(start_date), self.date_to_list(end_date)).getHistorical()
 
         # Create a csv file with the data
         historical_df.to_csv(file_name)
@@ -75,6 +72,9 @@ class HistoricalUtils:
 
     def list_to_date(self, trading_date):
         return date(int(trading_date[0]), int(trading_date[1]), int(trading_date[2]))
+
+    def date_to_list(self, trading_date):
+        return [trading_date.year, trading_date.month, trading_date.day]
 
     def get_start_date(self):
         return self.start_date
@@ -115,7 +115,7 @@ class HistoricalUtils:
 def main():
 
     # Create an instance of Historical Utils
-    historical_list = HistoricalUtils("VUS.TO", [2012, 1, 24], [2019, 2, 27])
+    historical_list = HistoricalUtils("VUS.TO", date(2012, 1, 24), date(2019, 2, 27))
 
     closest_date = historical_list.get_closest_date(date(2012, 4, 5))
     print("Closest date = " + str(closest_date))

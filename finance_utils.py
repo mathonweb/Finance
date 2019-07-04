@@ -21,32 +21,6 @@ class FinanceUtils:
     def __init__(self):
         pass
 
-    # def isnan(num):
-    #    return num != num
-    #
-    #
-    # def getfloordate(df, date):
-    #    # return the floor date closest to the selected date
-    #    date2find = date
-    #    i = datetime.timedelta(0)
-    #    while date2find.strftime("%y%m%d") not in df.index:
-    #        i = i - datetime.timedelta(1)
-    #        date2find = date + i
-    #    print(date2find)
-    #    return date2find
-    #
-    #
-    # def getceildate(df, date):
-    #    # return the floor date closest to the selected date
-    #    date2find = date
-    #    i = datetime.timedelta(0)
-    #    while date2find.strftime("%y%m%d") not in df.index:
-    #        i = i + datetime.timedelta(1)
-    #        date2find = date + i
-    #    print(date2find)
-    #    return date2find
-    #
-    #
     # def getannualreturn(df, year):
     #
     #    # return the first date of the year 1
@@ -68,21 +42,6 @@ class FinanceUtils:
 
 
 def main():
-    # file = 'historical_data/vus.to.csv'
-    # df = pd.read_csv(file, index_col='date', parse_dates=True, na_values='nan')
-
-    # year1 = 2014
-    # year2 = 2014
-    #
-    ## todo validate year available in the excel files
-    #
-    # try:
-    #    cagr = getannualreturn(df, year1, year2)
-    #    # todo comprendre pourquoi je n'arrive pas au rendement annuel de vanguard et yahoo (12.65% pour 2014)
-    #    print('{:2.2f}%' .format(cagr*100))
-    # except exception:
-    #    print('error with dates')
-
     try:
         file = str(os.environ['INVESTING_PATH']) + "\\" + "transactions.csv"
     except Exception as e:
@@ -91,10 +50,10 @@ def main():
     # create an instance of transactions utils
     transactions_list = TransactionsUtils(file).get_transactions()
 
-    my_date = date(2019, 1, 1)
+    my_date = date.today()
 
     # create an instance of historical utils
-    historical_list = HistoricalUtils("XEF.TO", [2012, 1, 1], [2019, 1, 1])
+    historical_list = HistoricalUtils("XEF.TO", date(2012, 1, 1), my_date)
 
     share_xef = ShareUtils(transactions_list, historical_list.historical_df, "XEF.TO", my_date)
     print("Number of shares = " + str(share_xef.get_share_nb()))
