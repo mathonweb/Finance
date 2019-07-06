@@ -18,7 +18,10 @@ from historical_utils import HistoricalUtils
 
 
 class FinanceUtils:
-    def __init__(self):
+    def __init__(self, transactions_file):
+        self.transactions = TransactionsUtils(transactions_file)
+
+    def setAnnualReturn(self, year):
         pass
 
     # def getannualreturn(df, year):
@@ -52,12 +55,9 @@ def main():
 
     my_date = date.today()
 
-    # create an instance of historical utils
-    historical_list = HistoricalUtils("XEF.TO", date(2012, 1, 1), my_date)
-
-    share_xef = ShareUtils(transactions_list, historical_list.historical_df, "XEF.TO", my_date)
-    print("Number of shares = " + str(share_xef.get_share_nb()))
-    print("Mean cost = " + str(share_xef.get_mean_cost()))
+    share_xef = ShareUtils(transactions_list, "XEF.TO", my_date)
+    print("Number of shares = " + str(share_xef.set_share_nb()))
+    print("Mean cost = " + str(share_xef.set_mean_cost()))
     print("Actual price = " + str(share_xef.actual_price))
 
 
