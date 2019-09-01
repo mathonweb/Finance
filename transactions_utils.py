@@ -64,8 +64,11 @@ class TransactionsUtils:
     def sort_transactions(self):
         self.transactions_df.sort_values(by='Date')
 
-    def get_transactions(self):
-        return self.transactions_df
+    def get_transactions(self, market_date):
+        if date is None:
+            return self.transactions_df
+        else:
+            return self.transactions_df[self.transactions_df['Date'] <= market_date]
 
     def get_transactions_number(self):
         return len(self.transactions_df)
@@ -77,9 +80,11 @@ class TransactionsUtils:
 def main():
 
     # Create an instance of Transactions Utils
-    transactions_list = TransactionsUtils("VUS.TO")
-
+    transactions_list = TransactionsUtils("XEF.TO")
     print("Number of transactions = " + str(transactions_list.get_transactions_number()))
+
+    transactions = transactions_list.get_transactions(date(2018, 1, 1))
+    print("Transactions = " + str(transactions))
 
 
 if __name__ == '__main__':

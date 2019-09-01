@@ -11,10 +11,8 @@
 from datetime import date
 from share_utils import ShareUtils
 from transactions_utils import TransactionsUtils
-import os
 # scientific computing package
 import pandas as pd
-from historical_utils import HistoricalUtils
 
 
 class FinanceUtils:
@@ -45,20 +43,13 @@ class FinanceUtils:
 
 
 def main():
-    try:
-        file = str(os.environ['INVESTING_PATH']) + "\\" + "transactions.csv"
-    except Exception as e:
-        print(e)
-
-    # create an instance of transactions utils
-    transactions_list = TransactionsUtils(file).get_transactions()
 
     my_date = date.today()
 
-    share_xef = ShareUtils(transactions_list, "XEF.TO", my_date)
-    print("Number of shares = " + str(share_xef.set_share_nb()))
-    print("Mean cost = " + str(share_xef.set_mean_cost()))
-    print("Actual price = " + str(share_xef.actual_price))
+    share_xef = ShareUtils("XEF.TO")
+    print("Number of shares = " + str(share_xef.get_share_nb(my_date)))
+    print("Mean cost = " + str(share_xef.get_mean_cost(my_date)))
+    print("Actual price = " + str(share_xef.get_actual_price(my_date)))
 
 
 if __name__ == '__main__':

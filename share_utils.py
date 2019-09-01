@@ -24,16 +24,16 @@ class ShareUtils:
     def get_transactions_number(self):
         pass
 
-    # def set_share_nb(self):
+    # def get_share_nb(self, market_date):
     #     return self.transactions['Quantity'].sum()
     #
-    # def set_total_cost(self):
+    # def get_total_cost(self, market_date):
     #     total_cost = 0
     #     for index, row in self.transactions.iterrows():
     #         total_cost = total_cost + row['Price'] * row['Quantity'] + row['Commission']
     #     return total_cost
     #
-    # def set_mean_cost(self):
+    # def get_mean_cost(self, market_date):
     #     if self.share_nb == 0:
     #         return 0
     #     else:
