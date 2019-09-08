@@ -9,17 +9,16 @@
 # -------------------------------------------------------------------------------
 
 from datetime import date
-from share_utils import ShareUtils
-from transactions_utils import TransactionsUtils
+from portfolio_utils import PortfolioUtils
 # scientific computing package
 import pandas as pd
 
 
 class FinanceUtils:
-    def __init__(self, transactions_file):
-        self.transactions = TransactionsUtils(transactions_file)
+    def __init__(self):
+        pass
 
-    def setAnnualReturn(self, year):
+    def set_annual_return(self, year):
         pass
 
     # def getannualreturn(df, year):
@@ -44,12 +43,12 @@ class FinanceUtils:
 
 def main():
 
-    my_date = date.today()
-
-    share_xef = ShareUtils("XEF.TO")
-    print("Number of shares = " + str(share_xef.get_share_nb(my_date)))
-    print("Mean cost = " + str(share_xef.get_mean_cost(my_date)))
-    print("Actual price = " + str(share_xef.get_actual_price(my_date)))
+    today_portfolio = PortfolioUtils(date.today())
+    print("Today Portfolio")
+    print(today_portfolio.get_portfolio())
+    begin_year_portfolio = PortfolioUtils(date(2019, 1, 1))
+    print("Begining of the year Portfolio")
+    print(begin_year_portfolio.get_portfolio())
 
 
 if __name__ == '__main__':

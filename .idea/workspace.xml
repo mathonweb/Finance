@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a25921ba-c81e-42d9-a0b9-d03123b04bbb" name="Default" comment="Fix method to read the historical data from yahoo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finance_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/finance_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/historical_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/historical_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/portfolio_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio_utils.py" afterDir="false" />
     </list>
@@ -19,48 +20,8 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>datetime</find>
-      <find>time</find>
-      <find>DataFrame</find>
-      <find>isNaN</find>
-      <find>getSymbolsFromFile</find>
-      <find>_defStartDate</find>
-      <find>downloadUrl</find>
-      <find>finance_utils</find>
-      <find>Bar</find>
-      <find>getDate</find>
-      <find>bars</find>
-      <find>loadDataFrame</find>
-      <find>updateAllSymbols</find>
-      <find>symbolToFilename</find>
-      <find>symbol</find>
-      <find>getSymbolData</find>
-      <find>convExcel2Dataframe</find>
-      <find>barArray</find>
-      <find>np</find>
-      <find>getAllSymbolsAvailable</find>
-      <find>pd</find>
-      <find>year1</find>
-      <find>downloadData</find>
-      <find>CStockDBMgr</find>
-      <find>now</find>
-      <find>start_date</find>
-      <find>loc</find>
-      <find>date</find>
-      <find>get_transactions</find>
-      <find>format_dates</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1400" />
-    <option name="height" value="1000" />
   </component>
   <component name="ProjectId" id="1QYwNIqJ3llwX8DbBXlVPRMUOmC" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -211,10 +172,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.portfolio_utils" />
+        <item itemvalue="Python.finance_utils" />
         <item itemvalue="Python.historical_utils" />
         <item itemvalue="Python.transactions_utils" />
         <item itemvalue="Python.share_utils" />
-        <item itemvalue="Python.finance_utils" />
       </list>
     </recent_temporary>
   </component>
@@ -283,96 +244,24 @@
     <option name="LAST_COMMIT_MESSAGE" value="Fix method to read the historical data from yahoo" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/historical_utils.py</url>
+          <line>53</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/historical_utils.py</url>
+          <line>77</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="row" />
       </configuration>
     </watches-manager>
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="evaluateCodeFragment">
-      <expression>
-        <expression-string>self.portfolio[&quot;Ticker&quot;]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.portfolio[self.portfolio[&quot;Ticker&quot;]]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.portfolio</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.portfolio.loc[0]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.portfolio.loc[&quot;Ticker&quot;]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.portfolio[&quot;Ticker&quot;].values</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-    </expressions>
-    <expressions id="evaluateExpression">
-      <expression>
-        <expression-string>self.portfolio[self.portfolio[&quot;Ticker&quot;]]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.portfolio[&quot;Ticker&quot;]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>transactions</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.transactions_df.loc[str(index), 'Date']</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.transactions_df</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>row</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.transactions_df.iterrows()</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.historical</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.historical.at('Open')</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.historical.get('Open')</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
   </component>
 </project>

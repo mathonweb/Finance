@@ -38,7 +38,7 @@ class PortfolioUtils:
             quantity = self.portfolio.loc[ticker_index, "Quantity"]
             total_quantity = quantity + row["Quantity"]
             if row["Quantity"] > 0:
-                mean_cost = cost*quantity/total_quantity + row["Price"]*row["Quantity"]/total_quantity
+                mean_cost = cost * quantity / total_quantity + row["Price"] * row["Quantity"] / total_quantity
             else:
                 mean_cost = cost
             self.portfolio.loc[ticker_index, "Mean cost"] = mean_cost
@@ -49,10 +49,13 @@ class PortfolioUtils:
 
             # I prefer to keep the ticker with empty quantity to keep trace on Commission
 
+        # Round the total Mean cost
+        self.portfolio.loc[ticker_index, "Mean cost"] = round(mean_cost, 2)
+
         # Complete with the closed price
         for index, row in self.portfolio.iterrows():
             if row["Quantity"] > 0:
-                self.portfolio.loc[index, "Price"] = HistoricalUtils(row["Ticker"], self.date).\
+                self.portfolio.loc[index, "Price"] = HistoricalUtils(row["Ticker"], self.date). \
                     get_adj_close_price(self.date)
 
     def find_ticker(self, ticker):
@@ -67,9 +70,8 @@ class PortfolioUtils:
 
 
 def main():
-
     # Create an instance of Portfolio Utils
-    portfolio = PortfolioUtils(date(2019, 9, 8))
+    portfolio = PortfolioUtils(date(2019, 9, 1))
     print(portfolio.get_portfolio())
 
 

@@ -28,7 +28,7 @@ class HistoricalUtils:
         # Verify if the csv file is already present
         file_name = str(os.environ['INVESTING_PATH']) + "\\" + "Historical_data" + "\\" + ticker + ".csv"
         if Path(file_name).is_file():
-            historical_df = pd.read_csv(file_name)
+            historical_df = pd.read_csv(file_name, skip_blank_lines=True, index_col=0)
         else:
             historical_df = Fetcher(ticker, self.date_to_list(market_date), self.date_to_list(date.today())).\
                 getHistorical()
@@ -59,7 +59,7 @@ class HistoricalUtils:
             # Convert Excel date format into Date format
             date_string = [int(i) for i in row['Date'].split('-')]
             row['Date'] = self.list_to_date(date_string)
-            self.historical_df.iat[row_no, 1] = row['Date']
+            self.historical_df.iat[row_no, 0] = row['Date']
             row_no += 1
 
     def string_to_date(self, trading_date):
@@ -75,10 +75,7 @@ class HistoricalUtils:
     def get_closest_date(self, trading_date):
         # After updating the historical spreadsheet, if the trading date still not there, we return the last trading
         # date
-        if trading_date > self.string_to_date(self.historical_df["Date"].iloc[-1]):
-            return self.historical_df["Date"].iloc[-1]
-        else:
-            return max(filter(lambda x: x <= trading_date, self.historical_df["Date"]))
+        return max(filter(lambda x: x <= trading_date, self.historical_df["Date"]))
 
     def get_item(self, trading_date, item):
         closest_date = self.get_closest_date(trading_date)
