@@ -9,6 +9,8 @@
 # -------------------------------------------------------------------------------
 from datetime import date
 import pandas as pd
+
+from historical_utils import HistoricalUtils
 from transactions_utils import TransactionsUtils
 
 
@@ -16,8 +18,9 @@ class PortfolioUtils:
     def __init__(self, trading_date):
         self.date = trading_date
         self.transactions = TransactionsUtils("all").get_transactions(trading_date)
-        self.portfolio = pd.DataFrame(index=None, columns={"Ticker", "Mean price", "Quantity", "Commission"})
+        self.portfolio = pd.DataFrame(index=None, columns={"Ticker", "Mean cost", "Quantity", "Commission", "Price"})
         self.set_portfolio()
+        self.cash = 0
 
     def set_portfolio(self):
 
@@ -26,21 +29,31 @@ class PortfolioUtils:
             # Add the ticker in the Dataframe if it is not present
             ticker_index = self.find_ticker(row["Ticker"])
             if ticker_index is None:
-                self.portfolio = self.portfolio.append({"Ticker": row["Ticker"], "Mean price": 0, "Quantity": 0,
+                self.portfolio = self.portfolio.append({"Ticker": row["Ticker"], "Mean cost": 0, "Quantity": 0,
                                                         "Commission": 0}, ignore_index=True)
             ticker_index = self.find_ticker(row["Ticker"])
 
-            # Set the Mean Price
-            price = self.portfolio.loc[ticker_index, "Mean price"]
+            # Update the mean price, the quantity and the commission
+            cost = self.portfolio.loc[ticker_index, "Mean cost"]
             quantity = self.portfolio.loc[ticker_index, "Quantity"]
             total_quantity = quantity + row["Quantity"]
-            mean_price = price*quantity/total_quantity + row["Price"]*row["Quantity"]/total_quantity
-            self.portfolio.loc[ticker_index, "Mean price"] = mean_price
+            if row["Quantity"] > 0:
+                mean_cost = cost*quantity/total_quantity + row["Price"]*row["Quantity"]/total_quantity
+            else:
+                mean_cost = cost
+            self.portfolio.loc[ticker_index, "Mean cost"] = mean_cost
             # Sum the quantity
             self.portfolio.loc[ticker_index, "Quantity"] = total_quantity
             # Add the commission
             self.portfolio.loc[ticker_index, "Commission"] += row["Commission"]
-        # If quantity is 0 for a ticker, remove it from the portfolio
+
+            # I prefer to keep the ticker with empty quantity to keep trace on Commission
+
+        # Complete with the closed price
+        for index, row in self.portfolio.iterrows():
+            if row["Quantity"] > 0:
+                self.portfolio.loc[index, "Price"] = HistoricalUtils(row["Ticker"], self.date).\
+                    get_adj_close_price(self.date)
 
     def find_ticker(self, ticker):
         for index, row in self.portfolio.iterrows():
@@ -56,8 +69,8 @@ class PortfolioUtils:
 def main():
 
     # Create an instance of Portfolio Utils
-    portfolio = PortfolioUtils(date(2019, 1, 1)).get_portfolio()
-    print(portfolio)
+    portfolio = PortfolioUtils(date(2019, 9, 8))
+    print(portfolio.get_portfolio())
 
 
 if __name__ == '__main__':

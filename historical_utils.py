@@ -73,7 +73,12 @@ class HistoricalUtils:
         return [trading_date.year, trading_date.month, trading_date.day]
 
     def get_closest_date(self, trading_date):
-        return max(filter(lambda x: x <= trading_date, self.historical_df["Date"]))
+        # After updating the historical spreadsheet, if the trading date still not there, we return the last trading
+        # date
+        if trading_date > self.string_to_date(self.historical_df["Date"].iloc[-1]):
+            return self.historical_df["Date"].iloc[-1]
+        else:
+            return max(filter(lambda x: x <= trading_date, self.historical_df["Date"]))
 
     def get_item(self, trading_date, item):
         closest_date = self.get_closest_date(trading_date)
@@ -105,9 +110,9 @@ class HistoricalUtils:
 def main():
 
     # Create an instance of Historical Utils
-    historical_list = HistoricalUtils("VUS.TO", date(2012, 1, 24))
+    historical_list = HistoricalUtils("VUS.TO", date(2019, 9, 1))
 
-    closest_date = historical_list.get_closest_date(date(2012, 4, 5))
+    closest_date = historical_list.get_closest_date(date(2019, 9, 1))
 
     print("Open price = " + str(historical_list.get_open_price(closest_date)))
     print("High price = " + str(historical_list.get_high_price(closest_date)))
