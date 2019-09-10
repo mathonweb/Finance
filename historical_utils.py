@@ -30,7 +30,7 @@ class HistoricalUtils:
         if Path(file_name).is_file():
             historical_df = pd.read_csv(file_name, skip_blank_lines=True, index_col=0)
         else:
-            historical_df = Fetcher(ticker, self.date_to_list(market_date), self.date_to_list(date.today())).\
+            historical_df = Fetcher(ticker, self.date_to_list(date(2012, 1, 1)), self.date_to_list(date.today())).\
                 getHistorical()
             historical_df.to_csv(file_name)
 
@@ -73,8 +73,6 @@ class HistoricalUtils:
         return [trading_date.year, trading_date.month, trading_date.day]
 
     def get_closest_date(self, trading_date):
-        # After updating the historical spreadsheet, if the trading date still not there, we return the last trading
-        # date
         return max(filter(lambda x: x <= trading_date, self.historical_df["Date"]))
 
     def get_item(self, trading_date, item):
@@ -107,7 +105,7 @@ class HistoricalUtils:
 def main():
 
     # Create an instance of Historical Utils
-    historical_list = HistoricalUtils("VUS.TO", date(2019, 9, 1))
+    historical_list = HistoricalUtils("XSB.TO", date(2019, 8, 1))
 
     closest_date = historical_list.get_closest_date(date(2019, 9, 1))
 

@@ -5,7 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finance_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/finance_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/historical_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/historical_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transactions_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/transactions_utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +56,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.portfolio_utils">
+  <component name="RunManager" selected="Python.finance_utils">
     <configuration name="finance_utils" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Financial_perf" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -171,8 +171,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.portfolio_utils" />
         <item itemvalue="Python.finance_utils" />
+        <item itemvalue="Python.portfolio_utils" />
         <item itemvalue="Python.historical_utils" />
         <item itemvalue="Python.transactions_utils" />
         <item itemvalue="Python.share_utils" />
@@ -244,20 +244,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Fix method to read the historical data from yahoo" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/historical_utils.py</url>
-          <line>53</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/historical_utils.py</url>
-          <line>77</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="row" />

@@ -47,7 +47,7 @@ def main():
     print("Today Portfolio")
     print(today_portfolio.get_portfolio())
     begin_year_portfolio = PortfolioUtils(date(2019, 1, 1))
-    print("Begining of the year Portfolio")
+    print("Beginning of the year Portfolio")
     print(begin_year_portfolio.get_portfolio())
 
 
