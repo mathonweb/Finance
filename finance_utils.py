@@ -7,48 +7,84 @@
 # Created:      2019-02-07
 # Copyright:    (c) Mathieu Guilbault 2019
 # -------------------------------------------------------------------------------
+import calendar
+from datetime import date, datetime
+from logging import exception
 
-from datetime import date
 from portfolio_utils import PortfolioUtils
+from scipy.optimize import fsolve
+from transactions_utils import TransactionsUtils
 # scientific computing package
 import pandas as pd
 
 
 class FinanceUtils:
     def __init__(self):
-        pass
+        self.annual_returns = {}
 
     def set_annual_return(self, year):
-        pass
+        print("Enter set_annual_return")
+        date_year = int(year)
+        if date_year > date.today().year:
+            raise exception('dateerror')
+        else:
+            # VMD - Value at the beginning
+            begin_year = self.calculate_value(date(date_year, 1, 1))
+            transactions_util = TransactionsUtils("all")
 
-    # def getannualreturn(df, year):
-    #
-    #    # return the first date of the year 1
-    #    date1 = getfloordate(df, datetime.date(year1, 1, 1))
-    #
-    #    # return the last date of the year 2
-    #    date2 = getceildate(df, datetime.date(year2, 12, 31))
-    #
-    #    # do the calculation if year2 is after year1
-    #    if date2 < date1:
-    #        print("error: you must enter and ending year later than the first year")
-    #        raise exception('dateerror')
-    #
-    #    # compound annual growth rate
-    #    # cagr = (ending value / beginning value) ^ (1 / # of years) - 1
-    #    cagr = df.loc[date2.strftime("%y%m%d"), 'adj close'] / df.loc[date1.strftime("%y%m%d"), 'adj close'] - 1
-    #
-    #    return cagr
+            if date_year == date.today().year:
+                # YTD calculation
+                # VMF - Value at the end
+                end_period = self.calculate_value(date.today())
+                transactions = transactions_util.get_transactions_period(date(date_year, 1, 1), date.today())
+            else:
+                # Complete year calculation
+                # VMF - Value at the end
+                end_period = self.calculate_value(date(date_year, 12, 31))
+                transactions = transactions_util.get_transactions_period(date(date_year, 1, 1), date(date_year, 12, 31))
+
+            # x = symbols('x')
+            # Get the transactions for the period and build the expression
+            def equation(f):
+                x = f
+                move_expr = 0
+                for index, row in transactions.iterrows():
+                    nb_days_from_investing = row['Date'] - date(date_year, 1, 1)
+                    move_expr += (row['Quantity'] * row['Price']) / ((1 + x) ** (nb_days_from_investing.days / (365 + (1*calendar.isleap(date_year)))))
+
+                # Equation from https://www.disnat.com/forms/mrcc2/comprendre-vos-rendements-fr.pdf
+                return begin_year + move_expr - end_period / (1+x)
+
+            sol = fsolve(equation, 0)
+            self.annual_returns[year] = sol[0] * 100
+
+    def calculate_value(self, calendar_date):
+        portfolio_on_date = PortfolioUtils(calendar_date).get_portfolio()
+
+        value = 0
+        for index, row in portfolio_on_date.iterrows():
+            if row["Quantity"] > 0:
+                value += row["Price"] * row["Quantity"]
+
+        return value
+
+    def get_annual_return(self, year):
+        if year not in self.annual_returns:
+            self.set_annual_return(year)
+        return self.annual_returns.get(year)
 
 
 def main():
 
-    today_portfolio = PortfolioUtils(date.today())
-    print("Today Portfolio")
-    print(today_portfolio.get_portfolio())
-    begin_year_portfolio = PortfolioUtils(date(2019, 1, 1))
-    print("Beginning of the year Portfolio")
-    print(begin_year_portfolio.get_portfolio())
+    # today_portfolio = PortfolioUtils(date.today())
+    # print("Today Portfolio")
+    # print(today_portfolio.get_portfolio())
+    # begin_year_portfolio = PortfolioUtils(date(2019, 1, 1))
+    # print("Beginning of the year Portfolio")
+    # print(begin_year_portfolio.get_portfolio())
+
+    report = FinanceUtils()
+    print("YTD return: " + str(round(report.get_annual_return("2016"), 2)) + " %")
 
 
 if __name__ == '__main__':

@@ -23,5 +23,5 @@ setup(
     long_description=_readme,
     url="https://github.com/AndrewRPorter/yahoo-historical",
     download_url="https://github.com/AndrewRPorter/yahoo-historical/releases",
-    install_requires=["setuptools", "pandas", "requests"],
+    install_requires=["setuptools", "pandas", "requests", 'sympy', 'scipy'],
 )

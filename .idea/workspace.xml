@@ -4,10 +4,10 @@
     <list default="true" id="a25921ba-c81e-42d9-a0b9-d03123b04bbb" name="Default" comment="Fix method to read the historical data from yahoo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finance_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/finance_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historical_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/historical_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/transactions_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/transactions_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yahoo-historical/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/yahoo-historical/setup.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,6 +25,11 @@
   </component>
   <component name="ProjectId" id="1QYwNIqJ3llwX8DbBXlVPRMUOmC" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -43,18 +48,6 @@
       <recent name="C:\Users\Mathieu\Projets\Finance" />
       <recent name="C:\Users\Mathieu\Projets\fin_performance" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Python.finance_utils">
     <configuration name="finance_utils" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -173,11 +166,23 @@
       <list>
         <item itemvalue="Python.finance_utils" />
         <item itemvalue="Python.portfolio_utils" />
-        <item itemvalue="Python.historical_utils" />
         <item itemvalue="Python.transactions_utils" />
+        <item itemvalue="Python.historical_utils" />
         <item itemvalue="Python.share_utils" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -199,15 +204,6 @@
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -242,6 +238,28 @@
     </ignored-roots>
     <MESSAGE value="Fix method to read the historical data from yahoo" />
     <option name="LAST_COMMIT_MESSAGE" value="Fix method to read the historical data from yahoo" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1899" height="169" key="GridCell.Tab.0.bottom" timestamp="1577568360556">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1899" height="169" key="GridCell.Tab.0.bottom/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577568360556" />
+    <state width="1899" height="169" key="GridCell.Tab.0.center" timestamp="1577568360540">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1899" height="169" key="GridCell.Tab.0.center/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577568360540" />
+    <state width="1899" height="169" key="GridCell.Tab.0.left" timestamp="1577568360540">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1899" height="169" key="GridCell.Tab.0.left/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577568360540" />
+    <state width="1899" height="169" key="GridCell.Tab.0.right" timestamp="1577568360556">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1899" height="169" key="GridCell.Tab.0.right/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577568360556" />
+    <state x="656" y="348" key="com.intellij.ide.util.TipDialog" timestamp="1577565937667">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="656" y="348" key="com.intellij.ide.util.TipDialog/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577565937667" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

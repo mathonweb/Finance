@@ -65,7 +65,7 @@ class TransactionsUtils:
         self.transactions_df.sort_values(by='Date')
 
     def get_transactions(self, market_date):
-        if date is None:
+        if market_date is None:
             return self.transactions_df
         else:
             return self.transactions_df[self.transactions_df['Date'] <= market_date]
@@ -76,6 +76,10 @@ class TransactionsUtils:
     def get_tickers(self):
         return self.ticker
 
+    def get_transactions_period(self, begin_date, end_date):
+        return self.transactions_df[(begin_date <= self.transactions_df['Date']) &
+                                    (self.transactions_df['Date'] <= end_date)]
+
 
 def main():
 
@@ -84,7 +88,12 @@ def main():
     print("Number of transactions = " + str(transactions_list.get_transactions_number()))
 
     transactions = transactions_list.get_transactions(date(2018, 1, 1))
-    print("Transactions = " + str(transactions))
+    print("Transactions = ")
+    print(str(transactions))
+
+    period = transactions_list.get_transactions_period(date(2014, 1, 1), date(2014, 12, 31))
+    print("Transactions in 2014 = ")
+    print(str(period))
 
 
 if __name__ == '__main__':
