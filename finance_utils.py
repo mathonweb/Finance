@@ -76,15 +76,14 @@ class FinanceUtils:
 
 def main():
 
-    # today_portfolio = PortfolioUtils(date.today())
-    # print("Today Portfolio")
-    # print(today_portfolio.get_portfolio())
-    # begin_year_portfolio = PortfolioUtils(date(2019, 1, 1))
-    # print("Beginning of the year Portfolio")
-    # print(begin_year_portfolio.get_portfolio())
-
     report = FinanceUtils()
-    print("YTD return: " + str(round(report.get_annual_return("2016"), 2)) + " %")
+    print("YTD return 2013: " + str(round(report.get_annual_return("2013"), 2)) + " %")
+    print("YTD return 2014: " + str(round(report.get_annual_return("2014"), 2)) + " %")
+    print("YTD return 2015: " + str(round(report.get_annual_return("2015"), 2)) + " %")
+    print("YTD return 2016: " + str(round(report.get_annual_return("2016"), 2)) + " %")
+    print("YTD return 2017: " + str(round(report.get_annual_return("2017"), 2)) + " %")
+    print("YTD return 2018: " + str(round(report.get_annual_return("2018"), 2)) + " %")
+    print("YTD return 2019: " + str(round(report.get_annual_return("2019"), 2)) + " %")
 
 
 if __name__ == '__main__':

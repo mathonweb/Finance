@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finance_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/finance_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/portfolio_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transactions_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/transactions_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yahoo-historical/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/yahoo-historical/setup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -240,22 +239,22 @@
     <option name="LAST_COMMIT_MESSAGE" value="Fix method to read the historical data from yahoo" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1899" height="169" key="GridCell.Tab.0.bottom" timestamp="1577568360556">
+    <state width="1899" height="169" key="GridCell.Tab.0.bottom" timestamp="1577586656250">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1899" height="169" key="GridCell.Tab.0.bottom/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577568360556" />
-    <state width="1899" height="169" key="GridCell.Tab.0.center" timestamp="1577568360540">
+    <state width="1899" height="169" key="GridCell.Tab.0.bottom/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577586656250" />
+    <state width="1899" height="169" key="GridCell.Tab.0.center" timestamp="1577586656250">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1899" height="169" key="GridCell.Tab.0.center/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577568360540" />
-    <state width="1899" height="169" key="GridCell.Tab.0.left" timestamp="1577568360540">
+    <state width="1899" height="169" key="GridCell.Tab.0.center/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577586656250" />
+    <state width="1899" height="169" key="GridCell.Tab.0.left" timestamp="1577586656250">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1899" height="169" key="GridCell.Tab.0.left/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577568360540" />
-    <state width="1899" height="169" key="GridCell.Tab.0.right" timestamp="1577568360556">
+    <state width="1899" height="169" key="GridCell.Tab.0.left/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577586656250" />
+    <state width="1899" height="169" key="GridCell.Tab.0.right" timestamp="1577586656250">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1899" height="169" key="GridCell.Tab.0.right/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577568360556" />
+    <state width="1899" height="169" key="GridCell.Tab.0.right/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577586656250" />
     <state x="656" y="348" key="com.intellij.ide.util.TipDialog" timestamp="1577565937667">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
