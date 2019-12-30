@@ -26,7 +26,7 @@ class HistoricalUtils:
     def set_historical(self, ticker, market_date):
 
         # Verify if the csv file is already present
-        file_name = str(os.environ['INVESTING_PATH']) + "\\" + "Historical_data" + "\\" + ticker + ".csv"
+        file_name = os.path.join(os.environ['INVESTING_PATH'], "Historical_data", ticker + ".csv")
         if Path(file_name).is_file():
             historical_df = pd.read_csv(file_name, skip_blank_lines=True, index_col=0)
         else:

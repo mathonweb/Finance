@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a25921ba-c81e-42d9-a0b9-d03123b04bbb" name="Default" comment="Fix method to read the historical data from yahoo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finance_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/finance_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/historical_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transactions_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/transactions_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yahoo-historical/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/yahoo-historical/setup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +32,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Python" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -48,7 +48,7 @@
       <recent name="C:\Users\Mathieu\Projets\fin_performance" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.finance_utils">
+  <component name="RunManager" selected="Python.historical_utils">
     <configuration name="finance_utils" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Financial_perf" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -163,10 +163,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.historical_utils" />
+        <item itemvalue="Python.transactions_utils" />
         <item itemvalue="Python.finance_utils" />
         <item itemvalue="Python.portfolio_utils" />
-        <item itemvalue="Python.transactions_utils" />
-        <item itemvalue="Python.historical_utils" />
         <item itemvalue="Python.share_utils" />
       </list>
     </recent_temporary>
@@ -239,26 +239,54 @@
     <option name="LAST_COMMIT_MESSAGE" value="Fix method to read the historical data from yahoo" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1899" height="169" key="GridCell.Tab.0.bottom" timestamp="1577586656250">
+    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1577732227313">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1899" height="169" key="GridCell.Tab.0.bottom/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577586656250" />
-    <state width="1899" height="169" key="GridCell.Tab.0.center" timestamp="1577586656250">
+    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577732227313" />
+    <state width="1899" height="340" key="GridCell.Tab.0.bottom" timestamp="1577741533594">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1899" height="169" key="GridCell.Tab.0.center/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577586656250" />
-    <state width="1899" height="169" key="GridCell.Tab.0.left" timestamp="1577586656250">
+    <state width="1899" height="340" key="GridCell.Tab.0.bottom/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577741533594" />
+    <state width="1899" height="340" key="GridCell.Tab.0.center" timestamp="1577741533594">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1899" height="169" key="GridCell.Tab.0.left/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577586656250" />
-    <state width="1899" height="169" key="GridCell.Tab.0.right" timestamp="1577586656250">
+    <state width="1899" height="340" key="GridCell.Tab.0.center/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577741533594" />
+    <state width="1899" height="340" key="GridCell.Tab.0.left" timestamp="1577741533594">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1899" height="169" key="GridCell.Tab.0.right/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577586656250" />
-    <state x="656" y="348" key="com.intellij.ide.util.TipDialog" timestamp="1577565937667">
+    <state width="1899" height="340" key="GridCell.Tab.0.left/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577741533594" />
+    <state width="1899" height="340" key="GridCell.Tab.0.right" timestamp="1577741533594">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="656" y="348" key="com.intellij.ide.util.TipDialog/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577565937667" />
+    <state width="1899" height="340" key="GridCell.Tab.0.right/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577741533594" />
+    <state width="1899" height="340" key="GridCell.Tab.1.bottom" timestamp="1577741518722">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1899" height="340" key="GridCell.Tab.1.bottom/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577741518722" />
+    <state width="1899" height="340" key="GridCell.Tab.1.center" timestamp="1577741518722">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1899" height="340" key="GridCell.Tab.1.center/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577741518722" />
+    <state width="1899" height="340" key="GridCell.Tab.1.left" timestamp="1577741518722">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1899" height="340" key="GridCell.Tab.1.left/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577741518722" />
+    <state width="1899" height="340" key="GridCell.Tab.1.right" timestamp="1577741518722">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1899" height="340" key="GridCell.Tab.1.right/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577741518722" />
+    <state x="461" y="167" key="SettingsEditor" timestamp="1577732200777">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="461" y="167" key="SettingsEditor/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577732200777" />
+    <state x="656" y="348" key="com.intellij.ide.util.TipDialog" timestamp="1577727027785">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="656" y="348" key="com.intellij.ide.util.TipDialog/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577727027785" />
+    <state x="656" y="262" width="607" height="526" key="find.popup" timestamp="1577741644755">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="656" y="262" width="607" height="526" key="find.popup/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577741644755" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

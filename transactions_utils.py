@@ -23,7 +23,7 @@ class TransactionsUtils:
     def set_file(self):
         # Read the transactions.txt file if exists
         try:
-            return str(os.environ['INVESTING_PATH']) + "\\" + "transactions.csv"
+            return os.path.join(os.environ['INVESTING_PATH'], "transactions.csv")
         except Exception as e:
             print(e)
 
