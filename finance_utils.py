@@ -78,7 +78,7 @@ def main():
 
     report = FinanceUtils()
 
-    f = open("ytd_return.txt", "w")
+    f = open("annual_returns.txt", "w")
 
     for year in ["2013", "2014", "2015", "2016", "2017", "2018", "2019"]:
         print("Annual return " + year + ": " + str(round(report.get_annual_return(year), 2)) + " %")
