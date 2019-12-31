@@ -23,7 +23,7 @@ class FinanceUtils:
         self.annual_returns = {}
 
     def set_annual_return(self, year):
-        print("Enter set_annual_return")
+        # print("Enter set_annual_return")
         date_year = int(year)
         if date_year > date.today().year:
             raise exception('dateerror')
@@ -77,13 +77,14 @@ class FinanceUtils:
 def main():
 
     report = FinanceUtils()
-    print("YTD return 2013: " + str(round(report.get_annual_return("2013"), 2)) + " %")
-    print("YTD return 2014: " + str(round(report.get_annual_return("2014"), 2)) + " %")
-    print("YTD return 2015: " + str(round(report.get_annual_return("2015"), 2)) + " %")
-    print("YTD return 2016: " + str(round(report.get_annual_return("2016"), 2)) + " %")
-    print("YTD return 2017: " + str(round(report.get_annual_return("2017"), 2)) + " %")
-    print("YTD return 2018: " + str(round(report.get_annual_return("2018"), 2)) + " %")
-    print("YTD return 2019: " + str(round(report.get_annual_return("2019"), 2)) + " %")
+
+    f = open("ytd_return.txt", "w")
+
+    for year in ["2013", "2014", "2015", "2016", "2017", "2018", "2019"]:
+        print("Annual return " + year + ": " + str(round(report.get_annual_return(year), 2)) + " %")
+        f.write("Annual return " + year + ": " + str(round(report.get_annual_return(year), 2)) + " % \n")
+
+    f.close
 
 
 if __name__ == '__main__':
