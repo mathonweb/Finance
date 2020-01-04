@@ -80,7 +80,7 @@ def main():
 
     f = open("annual_returns.txt", "w")
 
-    for year in ["2013", "2014", "2015", "2016", "2017", "2018", "2019"]:
+    for year in ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"]:
         print("Annual return " + year + ": " + str(round(report.get_annual_return(year), 2)) + " %")
         f.write("Annual return " + year + ": " + str(round(report.get_annual_return(year), 2)) + " % \n")
 
