@@ -8,6 +8,7 @@
 # Copyright:    (c) Mathieu Guilbault 2019
 # -------------------------------------------------------------------------------
 import calendar
+import os
 from datetime import date, datetime
 from logging import exception
 
@@ -50,7 +51,8 @@ class FinanceUtils:
                 move_expr = 0
                 for index, row in transactions.iterrows():
                     nb_days_from_investing = row['Date'] - date(date_year, 1, 1)
-                    move_expr += (row['Quantity'] * row['Price']) / ((1 + x) ** (nb_days_from_investing.days / (365 + (1*calendar.isleap(date_year)))))
+                    move_expr += (row['Quantity'] * row['Price']) / \
+                                 ((1 + x) ** (nb_days_from_investing.days / (365 + (1*calendar.isleap(date_year)))))
 
                 # Equation from https://www.disnat.com/forms/mrcc2/comprendre-vos-rendements-fr.pdf
                 return begin_year + move_expr - end_period / (1+x)
@@ -78,7 +80,9 @@ def main():
 
     report = FinanceUtils()
 
-    f = open("annual_returns.txt", "w")
+    file_name = os.path.join(os.environ['HOME'], "Finance", "annual_returns.txt")
+
+    f = open(file_name, "w")
 
     for year in ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"]:
         print("Annual return " + year + ": " + str(round(report.get_annual_return(year), 2)) + " %")

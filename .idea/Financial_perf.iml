@@ -5,8 +5,8 @@
       <sourceFolder url="file://$MODULE_DIR$/yahoo-historical" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/yahoo-historical/yahoo_historical" isTestSource="false" />
-      <excludeFolder url="file://$MODULE_DIR$/venv" />
-      <excludeFolder url="file://$MODULE_DIR$/venv_obs" />
+      <excludeFolder url="file://$USER_HOME$/Projets/Finance/venv" />
+      <excludeFolder url="file://$USER_HOME$/Projets/Finance/venv_obs" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.7 (Finance)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
