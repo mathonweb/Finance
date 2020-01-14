@@ -82,13 +82,17 @@ def main():
 
     file_name = os.path.join(os.environ['HOME'], "Finance", "annual_returns.txt")
 
-    f = open(file_name, "w")
+    try:
+        f = open(file_name, "w")
 
-    for year in ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"]:
-        print("Annual return " + year + ": " + str(round(report.get_annual_return(year), 2)) + " %")
-        f.write("Annual return " + year + ": " + str(round(report.get_annual_return(year), 2)) + " % \n")
+        for year in ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"]:
+            print("Annual return " + year + ": " + str(round(report.get_annual_return(year), 2)) + " %")
+            f.write("Annual return " + year + ": " + str(round(report.get_annual_return(year), 2)) + " % \n")
 
-    f.close
+        f.close()
+
+    except Exception as err:
+        print("Exception error on annual_returns edition: ", err)
 
 
 if __name__ == '__main__':
