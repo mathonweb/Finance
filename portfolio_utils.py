@@ -57,7 +57,7 @@ class PortfolioUtils:
             for index, row in self.portfolio.iterrows():
                 if row["Quantity"] > 0:
                     self.portfolio.loc[index, "Price"] = HistoricalUtils(row["Ticker"], self.date). \
-                        get_adj_close_price(self.date)
+                        get_close_price(self.date)
 
     def find_ticker(self, ticker):
         for index, row in self.portfolio.iterrows():

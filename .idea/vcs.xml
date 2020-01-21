@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/yahoo-historical" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../Webpage" vcs="Git" />
   </component>
 </project>

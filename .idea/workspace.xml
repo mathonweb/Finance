@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a25921ba-c81e-42d9-a0b9-d03123b04bbb" name="Default" comment="Fix method to read the historical data from yahoo">
+      <change beforePath="$PROJECT_DIR$/.idea/Financial_perf.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Financial_perf.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finance_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/finance_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yahoo-historical/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/yahoo-historical/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Webpage/htdocs/financial_report.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Webpage/htdocs/financial_report.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +35,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Webpage" />
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -243,10 +247,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577732227313" />
-    <state x="739" y="266" key="FileChooserDialogImpl" timestamp="1578782346162">
+    <state x="739" y="266" key="FileChooserDialogImpl" timestamp="1579048197486">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="739" y="266" key="FileChooserDialogImpl/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1578782346162" />
+    <state x="739" y="266" key="FileChooserDialogImpl/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1579048197486" />
     <state width="1899" height="297" key="GridCell.Tab.0.bottom" timestamp="1578449099452">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -283,10 +287,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="461" y="167" key="SettingsEditor/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577732200777" />
-    <state x="656" y="348" key="com.intellij.ide.util.TipDialog" timestamp="1579037360751">
+    <state x="656" y="348" key="com.intellij.ide.util.TipDialog" timestamp="1579648970570">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="656" y="348" key="com.intellij.ide.util.TipDialog/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1579037360751" />
+    <state x="656" y="348" key="com.intellij.ide.util.TipDialog/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1579648970570" />
     <state x="656" y="262" width="607" height="526" key="find.popup" timestamp="1577741644755">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
