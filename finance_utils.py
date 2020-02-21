@@ -84,11 +84,11 @@ def main():
 
     try:
         f = open(file_name, "w")
-        print("Total return")
+        f.write("Total return \n")
         for year in ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"]:
             print(year + ": " + str(round(report.get_total_return(year), 2)) + " %")
             f.write(year + ": " + str(round(report.get_total_return(year), 2)) + " % \n")
-        print("Generated at " + str(datetime.now()))
+        f.write("Generated at " + str(datetime.now()))
         f.close()
 
     except Exception as err:
