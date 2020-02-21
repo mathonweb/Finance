@@ -21,10 +21,10 @@ import pandas as pd
 
 class FinanceUtils:
     def __init__(self):
-        self.annual_returns = {}
+        self.total_return = {}
 
-    def set_annual_return(self, year):
-        # print("Enter set_annual_return")
+    def set_total_return(self, year):
+        # print("Enter set_total_return")
         date_year = int(year)
         if date_year > date.today().year:
             raise exception('dateerror')
@@ -58,7 +58,7 @@ class FinanceUtils:
                 return begin_year + move_expr - end_period / (1+x)
 
             sol = fsolve(equation, 0)
-            self.annual_returns[year] = sol[0] * 100
+            self.total_return[year] = sol[0] * 100
 
     def calculate_value(self, calendar_date):
         portfolio_on_date = PortfolioUtils(calendar_date).get_portfolio()
@@ -70,29 +70,29 @@ class FinanceUtils:
 
         return value
 
-    def get_annual_return(self, year):
-        if year not in self.annual_returns:
-            self.set_annual_return(year)
-        return self.annual_returns.get(year)
+    def get_total_return(self, year):
+        if year not in self.total_return:
+            self.set_total_return(year)
+        return self.total_return.get(year)
 
 
 def main():
 
     report = FinanceUtils()
 
-    file_name = os.path.join(os.environ['HOME'], "Finance", "annual_returns.txt")
+    file_name = os.path.join(os.environ['HOME'], "Finance", "total_return.txt")
 
     try:
         f = open(file_name, "w")
-
+        print("Total return")
         for year in ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"]:
-            print("Annual return " + year + ": " + str(round(report.get_annual_return(year), 2)) + " %")
-            f.write("Annual return " + year + ": " + str(round(report.get_annual_return(year), 2)) + " % \n")
-
+            print(year + ": " + str(round(report.get_total_return(year), 2)) + " %")
+            f.write(year + ": " + str(round(report.get_total_return(year), 2)) + " % \n")
+        print("Generated at " + str(datetime.now()))
         f.close()
 
     except Exception as err:
-        print("Exception error on annual_returns edition: ", err)
+        print("Exception error on total_return edition: ", err)
 
 
 if __name__ == '__main__':
