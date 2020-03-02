@@ -9,7 +9,7 @@
 # -------------------------------------------------------------------------------
 import calendar
 import os
-from datetime import date, datetime
+from datetime import date, datetime, timezone, timedelta
 from logging import exception
 
 from portfolio_utils import PortfolioUtils
@@ -82,13 +82,15 @@ def main():
 
     file_name = os.path.join(os.environ['HOME'], "Finance", "total_return.txt")
 
+    today_date = datetime.now(tz=timezone(timedelta(hours=-5))).strftime("%Y-%m-%d %H:%M:%S")
+
     try:
         f = open(file_name, "w")
         f.write("Total return \n")
         for year in ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"]:
             print(year + ": " + str(round(report.get_total_return(year), 2)) + " %")
             f.write(year + ": " + str(round(report.get_total_return(year), 2)) + " % \n")
-        f.write("Generated at " + str(datetime.now()))
+        f.write("Generated at " + str(today_date))
         f.close()
 
     except Exception as err:
