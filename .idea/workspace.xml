@@ -1,129 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a25921ba-c81e-42d9-a0b9-d03123b04bbb" name="Default" comment="">
+    <list default="true" id="a25921ba-c81e-42d9-a0b9-d03123b04bbb" name="Default" comment="Fix method to read the historical data from yahoo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Trading/tradesim/pandas_test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
-              <folding>
-                <element signature="e#261#280#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/finance_utils.py">
-          <provider selected="true" editor-type-id="text-editor">
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
             <state relative-caret-position="170">
               <caret line="10" column="15" lean-forward="true" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Trading/tradesim/stock_db_mgr.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2601">
-              <caret line="164" column="4" selection-start-line="164" selection-start-column="4" selection-end-line="164" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>os</find>
-      <find>glob</find>
-      <find>urllib</find>
-      <find>datetime</find>
-      <find>time</find>
-      <find>DataFrame</find>
-      <find>isNaN</find>
-      <find>getSymbolsFromFile</find>
-      <find>_defStartDate</find>
-      <find>downloadUrl</find>
-      <find>finance_utils</find>
-      <find>Bar</find>
-      <find>getDate</find>
-      <find>bars</find>
-      <find>loadDataFrame</find>
-      <find>updateAllSymbols</find>
-      <find>symbolToFilename</find>
-      <find>CStockDBMgr</find>
-      <find>symbol</find>
-      <find>getSymbolData</find>
-      <find>convExcel2Dataframe</find>
-      <find>barArray</find>
-      <find>np</find>
-      <find>getAllSymbolsAvailable</find>
-      <find>downloadData</find>
-    </findStrings>
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/Bar.py" />
-        <option value="$PROJECT_DIR$/stock_db_mgr.py" />
-        <option value="$PROJECT_DIR$/getFinanceData.py" />
-        <option value="$PROJECT_DIR$/finance_utils.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
-  </component>
+  <component name="ProjectId" id="1QYwNIqJ3llwX8DbBXlVPRMUOmC" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Finance" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finance" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Finance" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="Finance" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.7 (Finance) &gt;" type="70bed36:NamedLibraryElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Webpage" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -135,20 +44,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Mathieu\Projets\Finance" />
       <recent name="C:\Users\Mathieu\Projets\fin_performance" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Python.finance_utils">
     <configuration name="finance_utils" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -172,7 +70,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="getFinanceData" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="historical_utils" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Financial_perf" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -184,7 +82,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/getFinanceData.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/historical_utils.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -193,7 +91,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="stock_db_mgr" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="portfolio_utils" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Financial_perf" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -205,7 +103,49 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/stock_db_mgr.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/portfolio_utils.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="share_utils" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Financial_perf" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/share_utils.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="transactions_utils" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Financial_perf" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/transactions_utils.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -215,17 +155,33 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.stock_db_mgr" />
       <item itemvalue="Python.finance_utils" />
-      <item itemvalue="Python.getFinanceData" />
+      <item itemvalue="Python.historical_utils" />
+      <item itemvalue="Python.portfolio_utils" />
+      <item itemvalue="Python.share_utils" />
+      <item itemvalue="Python.transactions_utils" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.finance_utils" />
-        <item itemvalue="Python.getFinanceData" />
-        <item itemvalue="Python.stock_db_mgr" />
+        <item itemvalue="Python.historical_utils" />
+        <item itemvalue="Python.transactions_utils" />
+        <item itemvalue="Python.portfolio_utils" />
+        <item itemvalue="Python.share_utils" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -238,60 +194,25 @@
       <option name="presentableId" value="Default" />
       <updated>1514924972021</updated>
     </task>
+    <task id="LOCAL-00001" summary="Fix method to read the historical data from yahoo">
+      <created>1561770620270</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1561770620270</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
-    <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17123288" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49583334" visible="true" weight="0.16233766" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32944915" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32900432" />
-      <window_info anchor="bottom" id="Python Console" order="8" weight="0.22727273" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32944915" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50416666" side_tool="true" weight="0.16313559" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
             <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-              <option name="COLUMN_ORDER">
-                <list>
-                  <option value="0" />
-                  <option value="1" />
-                  <option value="2" />
-                  <option value="3" />
-                </list>
-              </option>
+              <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
@@ -312,43 +233,32 @@
       </map>
     </option>
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/venv/Lib/io.py" />
-    <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/1395904391/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="3754" column="6" selection-start-line="3754" selection-start-column="6" selection-end-line="3754" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/pandas/lib.py" />
-    <entry file="file://$PROJECT_DIR$/stock_db_mgr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4318">
-          <caret line="258" column="25" selection-start-line="258" selection-start-column="12" selection-end-line="258" selection-end-column="25" />
-          <folding>
-            <element signature="e#325#334#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/getFinanceData.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="55" column="42" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="42" />
-          <folding>
-            <element signature="e#362#371#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Bar.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="21" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/Finance" />
+    </ignored-roots>
+    <MESSAGE value="Fix method to read the historical data from yahoo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix method to read the historical data from yahoo" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1577732227313">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577732227313" />
+    <state x="739" y="266" key="FileChooserDialogImpl" timestamp="1579048197486">
+      <screen x="0" y="0" width="1920" height="1050" />
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1899" height="297" key="GridCell.Tab.0.bottom/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1582255566038" />
+    <state width="1899" height="297" key="GridCell.Tab.0.center" timestamp="1582255566038">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1899" height="297" key="GridCell.Tab.0.center/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1582255566038" />
+    <state width="1899" height="297" key="GridCell.Tab.0.left" timestamp="1582255566038">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1899" height="297" key="GridCell.Tab.0.left/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1582255566038" />
+    <state width="1899" height="297" key="GridCell.Tab.0.right" timestamp="1582255566038">
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3/datetime.pyi">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-408">
@@ -359,29 +269,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Trading/tradesim/pandas_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
-          <folding>
-            <element signature="e#261#280#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    </state>
+    <state width="1899" height="297" key="GridCell.Tab.0.right/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1582255566038" />
+    <state width="1899" height="187" key="GridCell.Tab.1.bottom" timestamp="1577765782456">
     <entry file="file://$PROJECT_DIR$/../Trading/tradesim/stock_db_mgr.py">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2601">
           <caret line="164" column="4" selection-start-line="164" selection-start-column="4" selection-end-line="164" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/finance_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
+    </state>
+    <state width="1899" height="187" key="GridCell.Tab.1.bottom/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577765782456" />
+    <state width="1899" height="187" key="GridCell.Tab.1.center" timestamp="1577765782456">
+      <screen x="0" y="0" width="1920" height="1050" />
         <state relative-caret-position="170">
           <caret line="10" column="15" lean-forward="true" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
+    </state>
+    <state width="1899" height="187" key="GridCell.Tab.1.center/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577765782456" />
+    <state width="1899" height="187" key="GridCell.Tab.1.left" timestamp="1577765782456">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1899" height="187" key="GridCell.Tab.1.left/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577765782456" />
+    <state width="1899" height="187" key="GridCell.Tab.1.right" timestamp="1577765782456">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1899" height="187" key="GridCell.Tab.1.right/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577765782456" />
+    <state x="461" y="167" key="SettingsEditor" timestamp="1577732200777">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="461" y="167" key="SettingsEditor/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577732200777" />
+    <state x="603" y="465" width="743" height="353" key="com.intellij.ide.util.TipDialog" timestamp="1582253515481">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="603" y="465" width="743" height="353" key="com.intellij.ide.util.TipDialog/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1582253515481" />
+    <state x="656" y="262" width="607" height="526" key="find.popup" timestamp="1577741644755">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="656" y="262" width="607" height="526" key="find.popup/1920.0.1600.870/0.0.1920.1050@0.0.1920.1050" timestamp="1577741644755" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="row" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

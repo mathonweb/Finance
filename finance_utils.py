@@ -1,4 +1,4 @@
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 # Name:         finance_utils
 # Purpose:      Contains financial functions
 #
@@ -6,73 +6,95 @@
 #
 # Created:      2019-02-07
 # Copyright:    (c) Mathieu Guilbault 2019
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
+import calendar
+import os
+from datetime import date, datetime, timezone, timedelta
+from logging import exception
 
-import datetime
-
-# Scientific computing package
+from portfolio_utils import PortfolioUtils
+from scipy.optimize import fsolve
+from transactions_utils import TransactionsUtils
+# scientific computing package
 import pandas as pd
 
-def isNaN(num):
-    return num != num
 
-def getFloorDate(df, date):
-    # Return the floor date closest to the selected date
-    date2find = date
-    i = datetime.timedelta(0)
-    while date2find.strftime("%Y%m%d") not in df.index:
-        i = i - datetime.timedelta(1)
-        date2find = date + i
-    print(date2find)
-    return date2find
+class FinanceUtils:
+    def __init__(self):
+        self.total_return = {}
 
+    def set_total_return(self, year):
+        # print("Enter set_total_return")
+        date_year = int(year)
+        if date_year > date.today().year:
+            raise exception('dateerror')
+        else:
+            # VMD - Value at the beginning
+            begin_year = self.calculate_value(date(date_year, 1, 1))
+            transactions_util = TransactionsUtils("all")
 
-def getCeilDate(df, date):
-    # Return the floor date closest to the selected date
-    date2find = date
-    i = datetime.timedelta(0)
-    while date2find.strftime("%Y%m%d") not in df.index:
-        i = i + datetime.timedelta(1)
-        date2find = date + i
-    print(date2find)
-    return date2find
+            if date_year == date.today().year:
+                # YTD calculation
+                # VMF - Value at the end
+                end_period = self.calculate_value(date.today())
+                transactions = transactions_util.get_transactions_period(date(date_year, 1, 1), date.today())
+            else:
+                # Complete year calculation
+                # VMF - Value at the end
+                end_period = self.calculate_value(date(date_year, 12, 31))
+                transactions = transactions_util.get_transactions_period(date(date_year, 1, 1), date(date_year, 12, 31))
 
+            # x = symbols('x')
+            # Get the transactions for the period and build the expression
+            def equation(f):
+                x = f
+                move_expr = 0
+                for index, row in transactions.iterrows():
+                    nb_days_from_investing = row['Date'] - date(date_year, 1, 1)
+                    move_expr += (row['Quantity'] * row['Price']) / \
+                                 ((1 + x) ** (nb_days_from_investing.days / (365 + (1*calendar.isleap(date_year)))))
 
-def getAnnualReturn(df, year1, year2):
+                # Equation from https://www.disnat.com/forms/mrcc2/comprendre-vos-rendements-fr.pdf
+                return begin_year + move_expr - end_period / (1+x)
 
-    # Return the first date of the year 1
-    date1 = getFloorDate(df, datetime.date(year1, 1, 1))
+            sol = fsolve(equation, 0)
+            self.total_return[year] = sol[0] * 100
 
-    # Return the last date of the year 2
-    date2 = getCeilDate(df, datetime.date(year2, 12, 31))
+    def calculate_value(self, calendar_date):
+        portfolio_on_date = PortfolioUtils(calendar_date).get_portfolio()
 
-    # Do the calculation if year2 is after year1
-    if date2 < date1:
-        print("Error: You must enter and ending year later than the first year")
-        raise Exception('dateError')
+        value = 0
+        for index, row in portfolio_on_date.iterrows():
+            if row["Quantity"] > 0:
+                value += row["Price"] * row["Quantity"]
 
-    # Compound Annual Growth Rate
-    # CAGR = (Ending Value / Beginning Value) ^ (1 / # of years) - 1
-    cagr = df.loc[date2.strftime("%Y%m%d"), 'Adj Close'] / df.loc[date1.strftime("%Y%m%d"), 'Adj Close'] - 1
+        return value
 
-    return cagr
+    def get_total_return(self, year):
+        if year not in self.total_return:
+            self.set_total_return(year)
+        return self.total_return.get(year)
 
 
 def main():
-    f = 'Historical_data/VUS.TO.csv'
-    df = pd.read_csv(f, index_col='Date', parse_dates=True, na_values='nan')
 
-    year1 = 2014
-    year2 = 2014
+    report = FinanceUtils()
 
-    # TODO Validate year available in the Excel files
+    file_name = os.path.join(os.environ['HOME'], "Finance", "total_return.txt")
+
+    today_date = datetime.now(tz=timezone(timedelta(hours=-5))).strftime("%Y-%m-%d %H:%M:%S")
 
     try:
-        cagr = getAnnualReturn(df, year1, year2)
-        # TODO Comprendre pourquoi je n'arrive pas au rendement annuel de Vanguard et Yahoo (12.65% pour 2014)
-        print(cagr)
-    except Exception:
-        print('Error with dates')
+        f = open(file_name, "w")
+        f.write("Total return \n")
+        for year in ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"]:
+            print(year + ": " + str(round(report.get_total_return(year), 2)) + " %")
+            f.write(year + ": " + str(round(report.get_total_return(year), 2)) + " % \n")
+        f.write("Generated at " + str(today_date) + " EST")
+        f.close()
+
+    except Exception as err:
+        print("Exception error on total_return edition: ", err)
 
 
 if __name__ == '__main__':
