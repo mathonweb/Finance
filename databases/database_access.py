@@ -41,10 +41,9 @@ class Database(Table):
         @param database_name: MySQL database name
         @return: MySQL Connector/Python instance
         """
-        config = {'user': username, 'password': password, 'host': ip_address, 'database': database_name,
-                  'auth_plugin': 'mysql_native_password'}
         try:
-            cnx = mysql.connector.connect(**config)
+            cnx = mysql.connector.connect(user=username, password=password, host=ip_address, database=database_name,
+                                          auth_plugin='mysql_native_password')
 
         except mysql.connector.Error as err:
             if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
