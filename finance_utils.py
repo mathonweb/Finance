@@ -7,6 +7,10 @@
 # Created:      2019-02-07
 # Copyright:    (c) Mathieu Guilbault 2019
 # -------------------------------------------------------------------------------
+import sys
+import os
+sys.path.append(os.path.abspath("databases/"))
+
 import calendar
 import os
 from datetime import date, datetime, timezone, timedelta
@@ -15,10 +19,8 @@ from logging import exception
 from portfolio_utils import PortfolioUtils
 from scipy.optimize import fsolve
 from transactions_utils import TransactionsUtils
-from database_access import Database
-# scientific computing package
-import pandas as pd
 
+from database_access import Database
 import database_config as cfg
 
 
