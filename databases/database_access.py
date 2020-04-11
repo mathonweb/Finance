@@ -14,6 +14,7 @@ from table_access import Table
 
 import database_config as cfg
 
+
 class Database(Table):
     """ Database class with Table subclass"""
 
@@ -40,7 +41,8 @@ class Database(Table):
         @param database_name: MySQL database name
         @return: MySQL Connector/Python instance
         """
-        config = {'user': username, 'password': password, 'host': ip_address, 'database': database_name}
+        config = {'user': username, 'password': password, 'host': ip_address, 'database': database_name,
+                  'auth_plugin': 'mysql_native_password'}
         try:
             cnx = mysql.connector.connect(**config)
 
