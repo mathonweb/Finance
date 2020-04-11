@@ -15,8 +15,11 @@ from logging import exception
 from portfolio_utils import PortfolioUtils
 from scipy.optimize import fsolve
 from transactions_utils import TransactionsUtils
+from database_access import Database
 # scientific computing package
 import pandas as pd
+
+import database_config as cfg
 
 
 class FinanceUtils:
@@ -80,18 +83,33 @@ def main():
 
     report = FinanceUtils()
 
+    finance_db = Database(cfg.my_sql["host"], cfg.my_sql["user"], cfg.my_sql["passwd"], cfg.my_sql["db"])
+
     file_name = os.path.join(os.environ['HOME'], "Finance", "total_return.txt")
 
     today_date = datetime.now(tz=timezone(timedelta(hours=-5))).strftime("%Y-%m-%d %H:%M:%S")
+
+    current_year = date.today().year
 
     try:
         f = open(file_name, "w")
         f.write("Total return \n")
         for year in ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"]:
-            print(year + ": " + str(round(report.get_total_return(year), 2)) + " %")
-            f.write(year + ": " + str(round(report.get_total_return(year), 2)) + " % \n")
+            return_val = round(report.get_total_return(year), 2)
+
+            if len(finance_db.get_table_value("total_returns", "year", "year", year)) == 0:
+                # The total return for this year it is not already in the table
+                finance_db.insert_values("total_returns", [year, str(return_val)])
+            elif year == str(current_year):
+                # We can still update the total return for the actual year
+                finance_db.update_table_value("total_returns", "return_val", str(return_val), "year", str(current_year))
+
+            print(year + ": " + str(return_val) + " %")
+            f.write(year + ": " + str(return_val) + " % \n")
         f.write("Generated at " + str(today_date) + " EST")
         f.close()
+
+        finance_db.close_connection()
 
     except Exception as err:
         print("Exception error on total_return edition: ", err)
