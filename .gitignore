@@ -2,3 +2,4 @@
 .idea/*
 docs/*
 total_return.txt
+*__pycache__*
