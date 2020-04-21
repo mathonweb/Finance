@@ -1,13 +1,3 @@
-# -------------------------------------------------------------------------------
-# Name:         historical_utils
-# Purpose:      Create a dataframes from historical data
-#               Return info from historical data
-#
-# Author:       Mathieu Guilbault
-#
-# Created:      2019-06-15
-# Copyright:    (c) Mathieu Guilbault 2019
-# -------------------------------------------------------------------------------
 import os
 from datetime import date
 from pathlib import Path

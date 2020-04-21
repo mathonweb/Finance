@@ -1,12 +1,3 @@
-# -------------------------------------------------------------------------------
-# Name:         portfolio_utils
-# Purpose:      Class with methods for portfolio manipulation
-#
-# Author:       Mathieu Guilbault
-#
-# Created:      2019-07-12
-# Copyright:    (c) Mathieu Guilbault 2019
-# -------------------------------------------------------------------------------
 from datetime import date
 import pandas as pd
 
@@ -15,7 +6,7 @@ from transactions_utils import TransactionsUtils
 
 
 class PortfolioUtils:
-    def __init__(self, trading_date):
+    def __init__(self, trading_date, transactions):
         self.date = trading_date
         self.transactions = TransactionsUtils("all").get_transactions(trading_date)
         self.portfolio = pd.DataFrame(index=None, columns={"Ticker", "Mean cost", "Quantity", "Commission", "Price"})
@@ -68,6 +59,18 @@ class PortfolioUtils:
 
     def get_portfolio(self):
         return self.portfolio
+
+
+@staticmethod
+def calculate_value(calendar_date):
+    portfolio_on_date = PortfolioUtils(calendar_date).get_portfolio()
+
+    value = 0
+    for index, row in portfolio_on_date.iterrows():
+        if row["Quantity"] > 0:
+            value += row["Price"] * row["Quantity"]
+
+    return value
 
 
 def main():

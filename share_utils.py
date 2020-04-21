@@ -1,15 +1,6 @@
-# -------------------------------------------------------------------------------
-# Name:         share_utils
-# Purpose:      Class with methods for share status snapshot in time
-#
-# Author:       Mathieu Guilbault
-#
-# Created:      2019-03-04
-# Copyright:    (c) Mathieu Guilbault 2019
-# -------------------------------------------------------------------------------
+from datetime import date
 from historical_utils import HistoricalUtils
 from transactions_utils import TransactionsUtils
-from datetime import date
 
 
 class ShareUtils:

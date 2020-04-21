@@ -1,84 +1,60 @@
-# -------------------------------------------------------------------------------
-# Name:         finance_utils
-# Purpose:      Contains financial functions
-#
-# Author:       Mathieu Guilbault
-#
-# Created:      2019-02-07
-# Copyright:    (c) Mathieu Guilbault 2019
-# -------------------------------------------------------------------------------
-import sys
-import os
-sys.path.append(os.path.abspath("databases/"))
-
 import calendar
-import os
 from datetime import date, datetime, timezone, timedelta
-from logging import exception
-
-from portfolio_utils import PortfolioUtils
+import os
 from scipy.optimize import fsolve
+
+from portfolio_utils import calculate_value
 from transactions_utils import TransactionsUtils
+from databases.database_access import Database
+import databases.database_config as cfg
 
-from database_access import Database
-import database_config as cfg
 
+def set_total_return(year):
+    """
+    Measure the total return for one year
 
-class FinanceUtils:
-    def __init__(self):
-        self.total_return = {}
+    :param year: year to measure the total return (1970 - current year)
+    :return: N/A
+    """
+    date_year = int(year)
 
-    def set_total_return(self, year):
-        # print("Enter set_total_return")
-        date_year = int(year)
-        if date_year > date.today().year:
-            raise exception('dateerror')
+    if date_year > date.today().year or date_year < 1970:
+        raise Exception('Year to measure total return must be included in 1970 - current year, you set: ' + year)
+    else:
+        # VMD - Value at the beginning
+        begin_year = calculate_value(date(date_year, 1, 1))
+        transactions_util = TransactionsUtils("all")
+
+        if date_year == date.today().year:
+            # YTD calculation
+            # VMF - Value at the end
+            end_period = calculate_value(date.today())
+            transactions = transactions_util.get_transactions_period(date(date_year, 1, 1), date.today())
         else:
-            # VMD - Value at the beginning
-            begin_year = self.calculate_value(date(date_year, 1, 1))
-            transactions_util = TransactionsUtils("all")
+            # Complete year calculation
+            # VMF - Value at the end
+            end_period = calculate_value(date(date_year, 12, 31))
+            transactions = transactions_util.get_transactions_period(date(date_year, 1, 1), date(date_year, 12, 31))
 
-            if date_year == date.today().year:
-                # YTD calculation
-                # VMF - Value at the end
-                end_period = self.calculate_value(date.today())
-                transactions = transactions_util.get_transactions_period(date(date_year, 1, 1), date.today())
-            else:
-                # Complete year calculation
-                # VMF - Value at the end
-                end_period = self.calculate_value(date(date_year, 12, 31))
-                transactions = transactions_util.get_transactions_period(date(date_year, 1, 1), date(date_year, 12, 31))
+        # Get the transactions for the period and build the expression
+        def equation(f):
+            x = f
+            move_expr = 0
+            for index, row in transactions.iterrows():
+                nb_days_from_investing = row['Date'] - date(date_year, 1, 1)
+                move_expr += (row['Quantity'] * row['Price']) / \
+                             ((1 + x) ** (nb_days_from_investing.days / (365 + (1*calendar.isleap(date_year)))))
 
-            # x = symbols('x')
-            # Get the transactions for the period and build the expression
-            def equation(f):
-                x = f
-                move_expr = 0
-                for index, row in transactions.iterrows():
-                    nb_days_from_investing = row['Date'] - date(date_year, 1, 1)
-                    move_expr += (row['Quantity'] * row['Price']) / \
-                                 ((1 + x) ** (nb_days_from_investing.days / (365 + (1*calendar.isleap(date_year)))))
+            # Equation from https://www.disnat.com/forms/mrcc2/comprendre-vos-rendements-fr.pdf
+            return begin_year + move_expr - end_period / (1+x)
 
-                # Equation from https://www.disnat.com/forms/mrcc2/comprendre-vos-rendements-fr.pdf
-                return begin_year + move_expr - end_period / (1+x)
+        sol = fsolve(equation, 0)
+        self.total_return[year] = sol[0] * 100
 
-            sol = fsolve(equation, 0)
-            self.total_return[year] = sol[0] * 100
-
-    def calculate_value(self, calendar_date):
-        portfolio_on_date = PortfolioUtils(calendar_date).get_portfolio()
-
-        value = 0
-        for index, row in portfolio_on_date.iterrows():
-            if row["Quantity"] > 0:
-                value += row["Price"] * row["Quantity"]
-
-        return value
-
-    def get_total_return(self, year):
-        if year not in self.total_return:
-            self.set_total_return(year)
-        return self.total_return.get(year)
+def get_total_return(year):
+    if year not in self.total_return:
+        self.set_total_return(year)
+    return self.total_return.get(year)
 
 
 def main():
