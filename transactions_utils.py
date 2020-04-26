@@ -1,5 +1,6 @@
 from datetime import date
 import os
+
 import pandas as pd
 
 from config import transaction_file_path
@@ -7,7 +8,7 @@ from config import transaction_file_path
 
 class TransactionsUtils:
     """
-    Contain transaction info for a ticker or all ticker in the transactions file
+    Contain transactions info for a ticker or all ticker in the transactions file
     """
     def __init__(self, ticker, transactions_file):
         """
@@ -18,17 +19,9 @@ class TransactionsUtils:
         """
         self.ticker = ticker
         self.file = self.validate_transaction_file(transactions_file)
-        self.transactions_df = self.set_transactions()
+        self.transactions_df = self._set_transactions()
 
-    def get_tickers(self):
-        """
-        Get the ticker associated to this instance
-
-        :return: Ticker name
-        """
-        return self.ticker
-
-    def set_transactions(self):
+    def _set_transactions(self):
         """
         Create a dataframe with all transactions related to a ticker or for all tickers
 
@@ -51,6 +44,14 @@ class TransactionsUtils:
         self.sort_transactions(transactions_df)
 
         return transactions_df
+
+    def get_ticker(self):
+        """
+        Get the ticker associated to this instance
+
+        :return: Ticker name
+        """
+        return self.ticker
 
     def get_transactions(self, market_date):
         """
@@ -84,6 +85,9 @@ class TransactionsUtils:
         return self.transactions_df[(begin_date <= self.transactions_df['Date']) &
                                     (self.transactions_df['Date'] <= end_date)]
 
+    def get_transactions_number(self):
+        return len(self.transactions_df)
+
     @staticmethod
     def validate_transaction_file(transactions_file):
         """
@@ -108,7 +112,7 @@ class TransactionsUtils:
         row_no = 0
         for index, row in transactions_df.iterrows():
             date_string = [int(i) for i in row['Date'].split('-')]
-            row['Date'] = list_to_date(date_string)
+            row['Date'] = date(int(date_string[0]), int(date_string[1]), int(date_string[2]))
             transactions_df.iat[row_no, 1] = row['Date']
             row_no += 1
         return transactions_df
@@ -139,21 +143,13 @@ class TransactionsUtils:
         return transactions_df.sort_values(by='Date')
 
 
-def get_transactions_number(transactions_df):
-    return len(transactions_df)
-
-
-def list_to_date(trading_date):
-    return date(int(trading_date[0]), int(trading_date[1]), int(trading_date[2]))
-
-
 def main():
 
     # Create an instance of Transactions Utils
     transactions_list = TransactionsUtils("all", transaction_file_path)
-    print("Number of transactions = " + str(get_transactions_number(transactions_list.get_transactions(date.today()))))
+    print("Number of transactions = " + str(transactions_list.get_transactions_number()))
 
-    transactions = transactions_list.get_transactions(date(2018, 1, 1))
+    transactions = transactions_list.get_transactions(date.today())
     print("Transactions = ")
     print(str(transactions))
 
