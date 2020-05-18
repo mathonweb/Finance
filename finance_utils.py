@@ -1,6 +1,7 @@
 import calendar
 from datetime import date, datetime, timezone, timedelta
 import os
+
 from scipy.optimize import fsolve
 
 from portfolio_utils import calculate_value

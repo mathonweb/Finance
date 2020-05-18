@@ -4,11 +4,12 @@ import os
 import pandas as pd
 
 from config import transaction_file_path
+from lib_utils import format_dates
 
 
 class TransactionsUtils:
     """
-    Contain transactions info for a ticker or all ticker in the transactions file
+    Contain transactions info for a ticker or all tickers in the transactions file
     """
     def __init__(self, ticker, transactions_file):
         """
@@ -32,18 +33,18 @@ class TransactionsUtils:
         #    Ticker   Date        Price   Quantity    Commission
         # 0  XEF.TO   01/01/2017  10.9    5         9.99
 
-        file_df = pd.read_csv(self.file)
+        file_df = pd.read_csv(self.file, index_col=None)
 
         if self.ticker is not "all":
             transactions_df = file_df.loc[file_df['Ticker'] == self.ticker]
         else:
             transactions_df = file_df
 
-        transactions_df = self.format_dates(transactions_df)
-        self.validate_transactions(transactions_df)
-        self.sort_transactions(transactions_df)
+        transactions = format_dates(transactions_df)
+        self.validate_transactions(transactions)
+        transaction_sorted = self.sort_transactions(transactions)
 
-        return transactions_df
+        return transaction_sorted
 
     def get_ticker(self):
         """
@@ -100,22 +101,6 @@ class TransactionsUtils:
             return transactions_file
         else:
             raise Exception("Transaction file is not valid: " + str(transactions_file))
-
-    @staticmethod
-    def format_dates(transactions_df):
-        """
-        Convert Excel date format into Date format
-
-        :param transactions_df: csv file with transactions, follow the format
-        :return: Dataframe with transactions
-        """
-        row_no = 0
-        for index, row in transactions_df.iterrows():
-            date_string = [int(i) for i in row['Date'].split('-')]
-            row['Date'] = date(int(date_string[0]), int(date_string[1]), int(date_string[2]))
-            transactions_df.iat[row_no, 1] = row['Date']
-            row_no += 1
-        return transactions_df
 
     @staticmethod
     def validate_transactions(transactions_df):
