@@ -17,10 +17,10 @@ class HistoricalUtils:
     """
     def __init__(self, ticker):
         self.ticker = ticker
-        self.historical_df = self.set_historical(ticker)
+        self.historical_df = self._set_historical(ticker)
 
     @staticmethod
-    def set_historical(ticker):
+    def _set_historical(ticker):
         """
         Get the ticker historical data up to today
 
@@ -56,10 +56,9 @@ class HistoricalUtils:
         # Create a csv file with the data
         historical_df.to_csv(file_name)
 
-        historical_df = format_dates(historical_df)
-        historical_df.rename(columns={'Date': "Market_date"})
-        historical_df.set_index("Market_date")
-        return historical_df
+        historical_date_formated = format_dates(historical_df)
+        historical = historical_date_formated.set_index("Date")
+        return historical
 
     def get_market_date(self, req_date):
         """
@@ -68,40 +67,73 @@ class HistoricalUtils:
         :param req_date: Date that we want historical data
         :return: Market date closest to the requested date
         """
-        return max(filter(lambda x: x <= req_date, self.historical_df["Date"]))
+        return max(filter(lambda x: x <= req_date, self.historical_df.index))
 
     def _get_item(self, req_date, item):
         """
+        Get column value at a specific date
 
-
-        :param req_date:
-        :param item:
-        :return:
+        :param req_date: Request date of the value to get
+        :param item: Column name of the value to get
+        :return: Column-row value
         """
         market_date = self.get_market_date(req_date)
-        item_value = self.historical_df.loc[market_date.strftime("%d-%m-%Y"), item]
-        # item_value = 0
-        # for index, row in self.historical_df.iterrows():
-        #     if row["Date"] == market_date:
-        #         item_value = row[item]
+        item_value = self.historical_df.loc[market_date, item]
+
         return item_value
 
     def get_open_price(self, trading_date):
+        """
+        Get the open price
+
+        :param trading_date: Trading date
+        :return: Open price
+        """
         return self._get_item(trading_date, 'Open')
 
     def get_high_price(self, trading_date):
+        """
+        Get the High price
+
+        :param trading_date: Trading date
+        :return: High price
+        """
         return self._get_item(trading_date, 'High')
 
     def get_low_price(self, trading_date):
+        """
+        Get the Low price
+
+        :param trading_date: Trading date
+        :return: Low price
+        """
         return self._get_item(trading_date, 'Low')
 
     def get_close_price(self, trading_date):
+        """
+        Get the Close price
+
+        :param trading_date: Trading date
+        :return: Close price
+        """
         return self._get_item(trading_date, 'Close')
 
     def get_adj_close_price(self, trading_date):
+        """
+        Get the Adjusted close price
+
+        :param trading_date: Trading date
+        :return: Adjust close price
+        """
         return self._get_item(trading_date, 'Adj Close')
 
     def get_volume(self, trading_date):
+        """
+        Get the Volume
+
+        :param trading_date: Trading date
+        :return: Volume
+        """
         return self._get_item(trading_date, 'Volume')
 
 

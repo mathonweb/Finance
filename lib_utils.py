@@ -1,14 +1,8 @@
-from datetime import date
+from datetime import date, datetime
 
 
 def format_dates(df):
-    row_no = 0
-    for index, row in df.iterrows():
-        # Convert Excel date format into Date format
-        date_string = [int(i) for i in row['Date'].split('-')]
-        row['Date'] = list_to_date(date_string)
-        df.iat[row_no, 1] = row['Date']
-        row_no += 1
+    df['Date'] = [datetime.strptime(i, '%Y-%m-%d').date() for i in df['Date']]
     return df
 
 
