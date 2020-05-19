@@ -56,8 +56,8 @@ class HistoricalUtils:
         # Create a csv file with the data
         historical_df.to_csv(file_name)
 
-        historical_date_formated = format_dates(historical_df)
-        historical = historical_date_formated.set_index("Date")
+        historical_date_formatted = format_dates(historical_df)
+        historical = historical_date_formatted.set_index("Date")
         return historical
 
     def get_market_date(self, req_date):
