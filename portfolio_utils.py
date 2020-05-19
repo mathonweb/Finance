@@ -27,6 +27,9 @@ class PortfolioUtils:
 
         portfolio = pd.DataFrame(index=None, columns={"Ticker", "Mean cost", "Quantity", "Commission", "Price"})
 
+        ticker_index = None
+        mean_cost = None
+
         # Get portfolio status at that date
         for index, row in transactions.iterrows():
             # Check if the ticker already exists
@@ -88,7 +91,6 @@ class PortfolioUtils:
         return self.portfolio
 
 
-@staticmethod
 def calculate_value(calendar_date):
     """
     Calculate the Asset portfolio value at a specific date

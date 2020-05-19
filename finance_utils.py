@@ -3,14 +3,16 @@ from datetime import date, datetime, timezone, timedelta
 import os
 
 from scipy.optimize import fsolve
+import numpy as np
 
 from portfolio_utils import calculate_value
 from transactions_utils import TransactionsUtils
-from databases.database_access import Database
-import databases.database_config as cfg
+# from databases.database_access import Database
+# import databases.database_config as cfg
+from config import transaction_file_path, total_return_path
 
 
-def set_total_return(year):
+def calculate_total_return(year):
     """
     Measure the total return for one year
 
@@ -24,7 +26,7 @@ def set_total_return(year):
     else:
         # VMD - Value at the beginning
         begin_year = calculate_value(date(date_year, 1, 1))
-        transactions_util = TransactionsUtils("all")
+        transactions_util = TransactionsUtils("all", transaction_file_path)
 
         if date_year == date.today().year:
             # YTD calculation
@@ -49,46 +51,39 @@ def set_total_return(year):
             # Equation from https://www.disnat.com/forms/mrcc2/comprendre-vos-rendements-fr.pdf
             return begin_year + move_expr - end_period / (1+x)
 
-        sol = fsolve(equation, 0)
-        self.total_return[year] = sol[0] * 100
-
-def get_total_return(year):
-    if year not in self.total_return:
-        self.set_total_return(year)
-    return self.total_return.get(year)
+        sol = fsolve(equation, x0=np.array([0]))
+        return sol[0] * 100
 
 
 def main():
 
-    report = FinanceUtils()
+    # finance_db = Database(cfg.my_sql["host"], cfg.my_sql["user"], cfg.my_sql["passwd"], cfg.my_sql["db"])
 
-    finance_db = Database(cfg.my_sql["host"], cfg.my_sql["user"], cfg.my_sql["passwd"], cfg.my_sql["db"])
-
-    file_name = os.path.join(os.environ['HOME'], "Finance", "total_return.txt")
+    file_name = os.path.join(total_return_path)
 
     today_date = datetime.now(tz=timezone(timedelta(hours=-5))).strftime("%Y-%m-%d %H:%M:%S")
 
-    current_year = date.today().year
+    # current_year = date.today().year
 
     try:
         f = open(file_name, "w")
         f.write("Total return \n")
         for year in ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"]:
-            return_val = round(report.get_total_return(year), 2)
+            return_val = round(calculate_total_return(year), 2)
 
-            if len(finance_db.get_table_value("total_returns", "year", "year", year)) == 0:
-                # The total return for this year it is not already in the table
-                finance_db.insert_values("total_returns", [year, str(return_val)])
-            elif year == str(current_year):
-                # We can still update the total return for the actual year
-                finance_db.update_table_value("total_returns", "return_val", str(return_val), "year", str(current_year))
+            # if len(finance_db.get_table_value("total_returns", "year", "year", year)) == 0:
+            #     # The total return for this year it is not already in the table
+            #     finance_db.insert_values("total_returns", [year, str(return_val)])
+            # elif year == str(current_year):
+            #     # We can still update the total return for the actual year
+            #     finance_db.update_table_value("total_returns", "return_val", str(return_val), "year", str(current_year))
 
             print(year + ": " + str(return_val) + " %")
             f.write(year + ": " + str(return_val) + " % \n")
         f.write("Generated at " + str(today_date) + " EST")
         f.close()
 
-        finance_db.close_connection()
+        # finance_db.close_connection()
 
     except Exception as err:
         print("Exception error on total_return edition: ", err)
