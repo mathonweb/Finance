@@ -1,4 +1,5 @@
 from datetime import date
+
 import pandas as pd
 
 from historical_utils import HistoricalUtils
@@ -7,12 +8,19 @@ from config import transaction_file_path
 
 
 class PortfolioUtils:
+    """
+    Contains asset at a specific date
+    """
     def __init__(self, trading_date):
         self.trading_date = trading_date
         self.portfolio = self._set_portfolio()
 
     def _set_portfolio(self):
+        """
+        Set assets in a dataframe for a specific date
 
+        :return: Asset portfolio dataframe
+        """
         # Get transactions up to the trading date
         transactions_inst = TransactionsUtils("all", transaction_file_path)
         transactions = transactions_inst.get_transactions(self.trading_date)
@@ -21,12 +29,13 @@ class PortfolioUtils:
 
         # Get portfolio status at that date
         for index, row in transactions.iterrows():
-            # Add the ticker in the Dataframe if it is not present
-            ticker_index = self.find_ticker(row["Ticker"])
+            # Check if the ticker already exists
+            ticker_index = self._find_ticker(row["Ticker"], portfolio)
+            # Add the ticker in the Dataframe if it not exists in the portfolio
             if ticker_index is None:
                 portfolio = portfolio.append({"Ticker": row["Ticker"], "Mean cost": 0, "Quantity": 0,
                                               "Commission": 0}, ignore_index=True)
-            ticker_index = self.find_ticker(row["Ticker"])
+                ticker_index = self._find_ticker(row["Ticker"], portfolio)
 
             # Update the mean price, the quantity and the commission
             cost = portfolio.loc[ticker_index, "Mean cost"]
@@ -49,26 +58,44 @@ class PortfolioUtils:
             portfolio.loc[ticker_index, "Mean cost"] = round(mean_cost, 2)
 
             # Complete with the closed price
-            for index, row in self.portfolio.iterrows():
+            for index, row in portfolio.iterrows():
                 if row["Quantity"] > 0:
-                    portfolio.loc[index, "Price"] = HistoricalUtils(row["Ticker"], self.trading_date).\
-                        get_close_price(self.trading_date)
+                    portfolio.loc[index, "Price"] = HistoricalUtils(row["Ticker"]).get_close_price(self.trading_date)
 
         return portfolio
 
-    def find_ticker(self, ticker):
-        for index, row in self.portfolio.iterrows():
+    @staticmethod
+    def _find_ticker(ticker, portfolio):
+        """
+        Find the ticker in the portfolio
+
+        :param ticker: Ticker name
+        :param portfolio: Asset portfolio
+        :return: Index in the portfolio where the ticker is located
+        """
+        for index, row in portfolio.iterrows():
             if row["Ticker"] == ticker:
                 return index
 
         return None
 
     def get_portfolio(self):
+        """
+        Return the Asset portfolio
+
+        :return: Asset portfolio
+        """
         return self.portfolio
 
 
 @staticmethod
 def calculate_value(calendar_date):
+    """
+    Calculate the Asset portfolio value at a specific date
+
+    :param calendar_date: Date
+    :return: Assets total value
+    """
     portfolio_on_date = PortfolioUtils(calendar_date).get_portfolio()
 
     value = 0
@@ -81,7 +108,7 @@ def calculate_value(calendar_date):
 
 def main():
     # Create an instance of Portfolio Utils
-    portfolio = PortfolioUtils(date(2013, 1, 1))
+    portfolio = PortfolioUtils(date(2020, 1, 1))
     print(portfolio.get_portfolio())
 
 
