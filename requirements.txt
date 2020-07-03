@@ -1,6 +1,6 @@
-pandas==1.0.3
-sphinx==3.0.3
+pandas==1.0.5
+sphinx==3.1.1
 mysql-connector-python==8.0.20
-scipy==1.4.1
+scipy==1.5.0
 yahoo-historical==0.3.2
-numpy==1.18.4
+numpy==1.19.0

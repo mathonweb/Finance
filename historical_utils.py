@@ -6,7 +6,6 @@ import pandas as pd
 from yahoo_historical import Fetcher
 
 from config import historical_files_path
-from lib_utils import format_dates, string_to_date, date_to_list
 
 INVESTING_FIRST_DATE = date(2012, 1, 1)
 
@@ -33,31 +32,33 @@ class HistoricalUtils:
         # Verify if the csv file is already present
         file_name = os.path.join(historical_files_path, ticker + ".csv")
         if Path(file_name).is_file():
-            historical_df = pd.read_csv(file_name, skip_blank_lines=True, index_col=False)
+            historical_df = pd.read_csv(file_name, skip_blank_lines=True, index_col=None, usecols=["Date", "Open",
+                                                                                                   "High", "Low",
+                                                                                                   "Close",
+                                                                                                   "Adj Close",
+                                                                                                   "Volume"])
         else:
             historical_df = Fetcher(ticker, date_to_list(INVESTING_FIRST_DATE), date_to_list(market_date)).\
                 get_historical()
             historical_df.to_csv(file_name)
 
         # Verify if dates are covered by the start date and end date
-        min_date_string = historical_df["Date"].iloc[0]
-        min_date = string_to_date(min_date_string)
-        max_date_string = historical_df["Date"].iloc[-1]
-        max_date = string_to_date(max_date_string)
+        min_date = date.fromisoformat(historical_df["Date"].iloc[0])
+        max_date = date.fromisoformat(historical_df["Date"].iloc[-1])
 
         # If market date is out of bound, download the historical data from Yahoo
         if market_date < min_date:
-            historical_df = Fetcher(ticker, date_to_list(market_date), date_to_list(max_date)).\
-                get_historical()
+            historical_df = Fetcher(ticker, date_to_list(market_date), date_to_list(max_date)).get_historical()
+            # Create a csv file with the data
+            historical_df.to_csv(file_name)
         if market_date > max_date:
-            historical_df = Fetcher(ticker, date_to_list(min_date), date_to_list(market_date)).\
-                get_historical()
+            historical_df = Fetcher(ticker, date_to_list(min_date), date_to_list(market_date)).get_historical()
+            # Create a csv file with the data
+            historical_df.to_csv(file_name)
 
-        # Create a csv file with the data
-        historical_df.to_csv(file_name)
+        historical_df["Date"] = pd.to_datetime(historical_df["Date"]).dt.date
 
-        historical_date_formatted = format_dates(historical_df)
-        historical = historical_date_formatted.set_index("Date")
+        historical = historical_df
         return historical
 
     def get_market_date(self, req_date):
@@ -67,7 +68,7 @@ class HistoricalUtils:
         :param req_date: Date that we want historical data
         :return: Market date closest to the requested date
         """
-        return max(filter(lambda x: x <= req_date, self.historical_df.index))
+        return max(filter(lambda x: x <= req_date, self.historical_df['Date']))
 
     def _get_item(self, req_date, item):
         """
@@ -77,8 +78,12 @@ class HistoricalUtils:
         :param item: Column name of the value to get
         :return: Column-row value
         """
-        market_date = self.get_market_date(req_date)
-        item_value = self.historical_df.loc[market_date, item]
+
+        closest_date = self.get_market_date(req_date)
+        item_value = 0
+        for index, row in self.historical_df.iterrows():
+            if row["Date"] == closest_date:
+                item_value = row[item]
 
         return item_value
 
@@ -135,6 +140,10 @@ class HistoricalUtils:
         :return: Volume
         """
         return self._get_item(trading_date, 'Volume')
+
+
+def date_to_list(trading_date):
+    return [trading_date.year, trading_date.month, trading_date.day]
 
 
 def main():

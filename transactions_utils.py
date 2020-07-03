@@ -4,13 +4,13 @@ import os
 import pandas as pd
 
 from config import transaction_file_path
-from lib_utils import format_dates
 
 
 class TransactionsUtils:
     """
     Contain transactions info for a ticker or all tickers in the transactions file
     """
+
     def __init__(self, ticker, transactions_file):
         """
         TransactionsUtils Constructor
@@ -40,11 +40,11 @@ class TransactionsUtils:
         else:
             transactions_df = file_df
 
-        transactions = format_dates(transactions_df)
-        self.validate_transactions(transactions)
-        transaction_sorted = self.sort_transactions(transactions)
+        transactions_df["Date"] = pd.to_datetime(transactions_df["Date"]).dt.date
+        self.validate_transactions(transactions_df)
+        # transaction_sorted = self.sort_transactions(transactions)
 
-        return transaction_sorted
+        return transactions_df
 
     def get_ticker(self):
         """
@@ -67,7 +67,7 @@ class TransactionsUtils:
         if market_date is None:
             return self.transactions_df
         else:
-            return self.transactions_df[self.transactions_df['Date'] <= market_date]
+            return self.transactions_df[self.transactions_df["Date"] <= market_date]
 
     def get_transactions_period(self, begin_date, end_date):
         """
@@ -83,8 +83,8 @@ class TransactionsUtils:
         if not isinstance(end_date, date):
             raise Exception("You must set a Date format for end_date: " + end_date)
 
-        return self.transactions_df[(begin_date <= self.transactions_df['Date']) &
-                                    (self.transactions_df['Date'] <= end_date)]
+        return self.transactions_df[(begin_date <= self.transactions_df["Date"]) &
+                                    (self.transactions_df["Date"] <= end_date)]
 
     def get_transactions_number(self):
         return len(self.transactions_df)
@@ -111,9 +111,9 @@ class TransactionsUtils:
         :return: Dataframe with transactions
         """
         for index, row in transactions_df.iterrows():
-            if not(row['Date'] <= date.today() and
-                   row['Price'] > 0 and
-                   row['Quantity'] != 0):
+            if not (row["Date"] <= date.today() and
+                    row['Price'] > 0 and
+                    row['Quantity'] != 0):
                 print("Please, fix your transaction info")
                 raise NameError('InvalidTransactionInfo')
 
@@ -125,11 +125,10 @@ class TransactionsUtils:
         :param transactions_df: csv file with transactions, follow the format
         :return: Dataframe with transactions
         """
-        return transactions_df.sort_values(by='Date')
+        return transactions_df.sort_values(by=transactions_df.index)
 
 
 def main():
-
     # Create an instance of Transactions Utils
     transactions_list = TransactionsUtils("all", transaction_file_path)
     print("Number of transactions = " + str(transactions_list.get_transactions_number()))
