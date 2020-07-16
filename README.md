@@ -1,10 +1,12 @@
 # Finance
 
+[![Python Versions](https://img.shields.io/pypi/pyversions/yt2mp3.svg)](https://pypi.python.org/pypi/yt2mp3/)
+
 ## Description
 Reports finance information about investments and transactions
 
 ## Prerequisite
-- Python 3.7
+- Python 3.8
 - Scipy (<http://www.scipy.org>)
 - Pandas (<http://pandas.pydata.org/>)
 - yahoo_historical (<https://github.com/AndrewRPorter/yahoo-historical>)
