@@ -6,7 +6,7 @@
 Reports finance information about investments and transactions
 
 ## Prerequisite
-- Python 3.7
+- Python 3.8
 - Scipy (<http://www.scipy.org>)
 - Pandas (<http://pandas.pydata.org/>)
 - yahoo_historical (<https://github.com/AndrewRPorter/yahoo-historical>)
