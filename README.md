@@ -1,5 +1,7 @@
 # Finance
 
+[![Python Versions](https://img.shields.io/pypi/pyversions/yt2mp3.svg)](https://pypi.python.org/pypi/yt2mp3/)
+
 ## Description
 Reports finance information about investments and transactions
 

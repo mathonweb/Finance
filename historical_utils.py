@@ -51,15 +51,14 @@ class HistoricalUtils:
             historical_df = Fetcher(ticker, date_to_list(market_date), date_to_list(max_date)).get_historical()
             # Create a csv file with the data
             historical_df.to_csv(file_name)
+            historical_df["Date"] = pd.to_datetime(historical_df["Date"]).dt.date
         if market_date > max_date:
             historical_df = Fetcher(ticker, date_to_list(min_date), date_to_list(market_date)).get_historical()
             # Create a csv file with the data
             historical_df.to_csv(file_name)
+            historical_df["Date"] = pd.to_datetime(historical_df["Date"]).dt.date
 
-        historical_df["Date"] = pd.to_datetime(historical_df["Date"]).dt.date
-
-        historical = historical_df
-        return historical
+        return historical_df
 
     def get_market_date(self, req_date):
         """

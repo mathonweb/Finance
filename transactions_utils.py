@@ -35,14 +35,13 @@ class TransactionsUtils:
 
         file_df = pd.read_csv(self.file, index_col=None)
 
-        if self.ticker is not "all":
+        if self.ticker != "all":
             transactions_df = file_df.loc[file_df['Ticker'] == self.ticker]
         else:
             transactions_df = file_df
 
         transactions_df["Date"] = pd.to_datetime(transactions_df["Date"]).dt.date
         self.validate_transactions(transactions_df)
-        # transaction_sorted = self.sort_transactions(transactions)
 
         return transactions_df
 
@@ -116,16 +115,6 @@ class TransactionsUtils:
                     row['Quantity'] != 0):
                 print("Please, fix your transaction info")
                 raise NameError('InvalidTransactionInfo')
-
-    @staticmethod
-    def sort_transactions(transactions_df):
-        """
-        Sort the Dataframe by Date
-
-        :param transactions_df: csv file with transactions, follow the format
-        :return: Dataframe with transactions
-        """
-        return transactions_df.sort_values(by=transactions_df.index)
 
 
 def main():
