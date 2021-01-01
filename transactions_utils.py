@@ -99,7 +99,7 @@ class TransactionsUtils:
         if os.path.exists(transactions_file):
             return transactions_file
         else:
-            raise Exception("Transaction file is not valid: " + str(transactions_file))
+            raise Exception("Transaction file path is not valid: " + str(transactions_file))
 
     @staticmethod
     def validate_transactions(transactions_df):
