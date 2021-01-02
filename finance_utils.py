@@ -61,13 +61,17 @@ def main():
 
     try:
         f = open(file_name, "w")
+        f.write("<html>")
+        f.write("<body>")
         f.write("Total return \n")
         for year in ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"]:
             return_val = round(calculate_total_return(year), 2)
 
             print(year + ": " + str(return_val) + " %")
-            f.write(year + ": " + str(return_val) + " % \n")
-        f.write("Generated at " + str(today_date) + " EST")
+            f.write("<br>" + year + ": " + str(return_val) + " %")
+        f.write("<br>" + "Generated at " + str(today_date) + " EST")
+        f.write("</body>")
+        f.write("</html>")
         f.close()
 
     except Exception as err:
