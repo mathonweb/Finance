@@ -69,11 +69,9 @@ def main():
         f = open(file_name, "w")
         f.write("<html>")
         f.write("<body>")
-        f.write("Performance \n")
-        f.write("Total return \n")
-        f.write("\n")
-
-        f.write("Calendar year \n")
+        f.write("Performance")
+        f.write("<br>")
+        f.write("Total return")
 
         for year in return_val:
             f.write("<br>" + year + ": " + str(return_val[year]) + " %")
