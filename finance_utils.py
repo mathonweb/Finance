@@ -59,16 +59,24 @@ def main():
 
     today_date = datetime.now(tz=timezone(timedelta(hours=-5))).strftime("%Y-%m-%d %H:%M:%S")
 
+    return_val = dict()
+
+    for year in ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"]:
+        return_val[year] = round(calculate_total_return(year), 2)
+        print(year + ": " + str(return_val[year]) + " %")
+
     try:
         f = open(file_name, "w")
         f.write("<html>")
         f.write("<body>")
+        f.write("Performance \n")
         f.write("Total return \n")
-        for year in ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"]:
-            return_val = round(calculate_total_return(year), 2)
+        f.write("\n")
 
-            print(year + ": " + str(return_val) + " %")
-            f.write("<br>" + year + ": " + str(return_val) + " %")
+        f.write("Calendar year \n")
+
+        for year in return_val:
+            f.write("<br>" + year + ": " + str(return_val[year]) + " %")
         f.write("<br>" + "Generated at " + str(today_date) + " EST")
         f.write("</body>")
         f.write("</html>")
