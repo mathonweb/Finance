@@ -1,9 +1,10 @@
 import calendar
-from datetime import date, datetime, timezone, timedelta
+from datetime import date, datetime, timezone
 import os
 
 from scipy.optimize import fsolve
 import numpy as np
+from pytz import timezone
 
 from portfolio_utils import calculate_value
 from transactions_utils import TransactionsUtils
@@ -57,7 +58,7 @@ def main():
 
     file_name = os.path.join(total_return_path)
 
-    today_date = datetime.now(tz=timezone(timedelta(hours=-5))).strftime("%Y-%m-%d %H:%M:%S")
+    today_date = datetime.now(timezone('US/Eastern')).strftime("%Y-%m-%d %H:%M:%S")
 
     return_val = dict()
 
