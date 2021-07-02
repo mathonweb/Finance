@@ -6,9 +6,11 @@ from scipy.optimize import fsolve
 import numpy as np
 from pytz import timezone
 
+import config
 from portfolio_utils import calculate_value
 from transactions_utils import TransactionsUtils
 from config import transaction_file_path, total_return_path
+from utils.errors_finder import find_errors_in_logs
 
 
 def calculate_total_return(year):
@@ -77,6 +79,10 @@ def main():
         for year in return_val:
             f.write("<br>" + year + ": " + str(return_val[year]) + " %")
         f.write("<br>" + "Generated at " + str(today_date) + " EST")
+
+        if find_errors_in_logs(config.logs_file):
+            f.write("<br>" + "Errors happened, see logs file ")
+
         f.write("</body>")
         f.write("</html>")
         f.close()

@@ -6,7 +6,7 @@ import pandas as pd
 from yahoo_historical import Fetcher
 
 from config import historical_files_path
-from logger import logger
+from utils.logger import logger
 
 INVESTING_FIRST_DATE = date(2012, 1, 1)
 
