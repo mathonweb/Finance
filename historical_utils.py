@@ -3,7 +3,7 @@ from datetime import date
 from pathlib import Path
 
 import pandas as pd
-from yahoo_historical import Fetcher
+import yfinance
 
 from config import historical_files_path
 from utils.logger import logger
@@ -40,8 +40,7 @@ class HistoricalUtils:
                                                                                                    "Volume"])
         else:
             try:
-                historical_df = Fetcher(ticker, date_to_list(INVESTING_FIRST_DATE), date_to_list(market_date)).\
-                    get_historical()
+                historical_df = yfinance.download(ticker, INVESTING_FIRST_DATE, market_date)
                 historical_df.to_csv(file_name)
             except Exception as e:
                 logger.error("Not possible to get historical data from internet:" + str(e))
@@ -53,20 +52,20 @@ class HistoricalUtils:
         # If market date is out of bound, download the historical data from Yahoo
         if market_date < min_date:
             try:
-                historical_df = Fetcher(ticker, date_to_list(market_date), date_to_list(max_date)).get_historical()
+                historical_df = yfinance.download(ticker, market_date, max_date)
                 # Create a csv file with the data
                 historical_df.to_csv(file_name)
             except Exception as e:
                 logger.error("Not possible to get historical data from internet:" + str(e))
         if market_date > max_date:
             try:
-                historical_df = Fetcher(ticker, date_to_list(min_date), date_to_list(market_date)).get_historical()
+                historical_df = yfinance.download(ticker, min_date, market_date)
                 # Create a csv file with the data
                 historical_df.to_csv(file_name)
             except Exception as e:
                 logger.error("Not possible to get historical data from internet:" + str(e))
 
-        historical_df["Date"] = pd.to_datetime(historical_df["Date"]).dt.date
+        historical_df["Date"] = historical_df.index
 
         return historical_df
 
