@@ -2,7 +2,7 @@ import calendar
 from datetime import date, datetime
 import os
 
-from scipy.optimize import fsolve
+from scipy import optimize
 import numpy as np
 from pytz import timezone
 
@@ -52,7 +52,7 @@ def calculate_total_return(year):
             # Equation from https://www.disnat.com/forms/mrcc2/comprendre-vos-rendements-fr.pdf
             return begin_year + move_expr - end_period / (1+x)
 
-        sol = fsolve(equation, x0=np.array([0]))
+        sol = optimize.fsolve(equation, x0=np.array([0]))
         return sol[0] * 100
 
 
