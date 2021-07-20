@@ -2,8 +2,6 @@ from datetime import datetime
 
 from pytz import timezone
 
-import config
-
 
 def find_errors_in_logs(filename):
     today_date = datetime.now(timezone('US/Eastern')).strftime("%Y-%m-%d")
