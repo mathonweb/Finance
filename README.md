@@ -13,4 +13,4 @@ Reports finance information about investments and transactions
 - mysql-connector (<https://pypi.org/project/mysql-connector/>)
 
 ## Installation
-- MySQL (pip3 install mysql-connector)
+- xxx
