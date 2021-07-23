@@ -4,7 +4,6 @@ import pandas as pd
 
 from historical_utils import HistoricalUtils
 from transactions_utils import TransactionsUtils
-from config import transaction_file_path
 
 
 class PortfolioUtils:
@@ -22,7 +21,7 @@ class PortfolioUtils:
         :return: Asset portfolio dataframe
         """
         # Get transactions up to the trading date
-        transactions_inst = TransactionsUtils("all", transaction_file_path)
+        transactions_inst = TransactionsUtils("all")
         transactions = transactions_inst.get_transactions(self.trading_date)
 
         portfolio = pd.DataFrame(index=None, columns={"Ticker", "Mean cost", "Quantity", "Commission", "Price"})

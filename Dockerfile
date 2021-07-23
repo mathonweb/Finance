@@ -10,6 +10,7 @@ COPY portfolio_utils.py ./
 COPY transactions_utils.py ./
 COPY utils/errors_finder.py ./utils/errors_finder.py
 COPY utils/logger.py ./utils/logger.py
+COPY utils/s3_client.py ./utils/s3_client.py
 COPY transactions/transactions.csv ./transactions/
 COPY transactions/Historical_data/ ./transactions/Historical_data/
 

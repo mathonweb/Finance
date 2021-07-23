@@ -9,7 +9,7 @@ from pytz import timezone
 import config
 from portfolio_utils import calculate_value
 from transactions_utils import TransactionsUtils
-from config import transaction_file_path, total_return_path
+from config import total_return_path
 from utils.errors_finder import find_errors_in_logs
 
 
@@ -27,7 +27,7 @@ def calculate_total_return(year):
     else:
         # VMD - Value at the beginning
         begin_year = calculate_value(date(date_year, 1, 1))
-        transactions_util = TransactionsUtils("all", transaction_file_path)
+        transactions_util = TransactionsUtils("all")
 
         if date_year == date.today().year:
             # YTD calculation

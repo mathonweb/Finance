@@ -3,7 +3,7 @@ import os
 
 import pandas as pd
 
-from config import transaction_file_path
+from utils.s3_client import get_file
 
 
 class TransactionsUtils:
@@ -11,15 +11,14 @@ class TransactionsUtils:
     Contain transactions info for a ticker or all tickers in the transactions file
     """
 
-    def __init__(self, ticker, transactions_file):
+    def __init__(self, ticker):
         """
         TransactionsUtils Constructor
 
         :param ticker: Thicker name (Ex: XIC.TO), all: for all tickers
-        :param transactions_file: Absolute path to the transactions.csv file
         """
         self.ticker = ticker
-        self.file = self.validate_transaction_file(transactions_file)
+        self.file = get_file("transactions.csv")
         self.transactions_df = self._set_transactions()
 
     def _set_transactions(self):
@@ -87,19 +86,6 @@ class TransactionsUtils:
 
     def get_transactions_number(self):
         return len(self.transactions_df)
-
-    @staticmethod
-    def validate_transaction_file(transactions_file):
-        """
-        Validate the csv file existing path
-
-        :param transactions_file: csv file with transactions, follow the format
-        :return: csv file absolute path if exists, exit otherwise
-        """
-        if os.path.exists(transactions_file):
-            return transactions_file
-        else:
-            raise Exception("Transaction file path is not valid: " + str(transactions_file))
 
     @staticmethod
     def validate_transactions(transactions_df):
