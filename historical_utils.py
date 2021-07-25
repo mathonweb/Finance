@@ -1,11 +1,10 @@
-import os
+import time
 from datetime import date
 from pathlib import Path
 
 import pandas as pd
 import yfinance
 
-from config import historical_files_path
 from utils.logger import logger
 
 INVESTING_FIRST_DATE = date(2012, 1, 1)
@@ -31,19 +30,27 @@ class HistoricalUtils:
         market_date = date.today()
 
         # Verify if the csv file is already present
-        file_name = os.path.join(historical_files_path, ticker + ".csv")
-        if Path(file_name).is_file():
-            historical_df = pd.read_csv(file_name, skip_blank_lines=True, index_col=None, usecols=["Date", "Open",
-                                                                                                   "High", "Low",
-                                                                                                   "Close",
-                                                                                                   "Adj Close",
-                                                                                                   "Volume"])
-        else:
-            try:
-                historical_df = yfinance.download(ticker, INVESTING_FIRST_DATE, market_date)
-                historical_df.to_csv(file_name)
-            except Exception as e:
-                logger.error("Not possible to get historical data from internet:" + str(e))
+        file_name = Path(ticker + ".csv")
+
+        nb_retry = 2
+        for _ in range(nb_retry):
+            if file_name.is_file():
+                historical_df = pd.read_csv(file_name, skip_blank_lines=True, index_col=None, usecols=["Date", "Open",
+                                                                                                       "High", "Low",
+                                                                                                       "Close",
+                                                                                                       "Adj Close",
+                                                                                                       "Volume"])
+                break
+            else:
+                try:
+                    historical_df = yfinance.download(ticker, INVESTING_FIRST_DATE, market_date)
+                    historical_df.to_csv(file_name)
+                except Exception as e:
+                    logger.error("Not possible to get historical data from internet:" + str(e))
+                    time.sleep(10)
+
+        if not file_name.is_file():
+            raise Exception("Not possible to get historical data from internet for " + str(file_name))
 
         # Verify if dates are covered by the start date and end date
         min_date = date.fromisoformat(historical_df["Date"].iloc[0])
