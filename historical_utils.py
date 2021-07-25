@@ -27,13 +27,6 @@ class HistoricalUtils:
         :return: dataframe of ticker's historical data
         """
 
-        if date.today().isoweekday() == 6:
-            market_date = date.today() - timedelta(days=1)
-        elif date.today().isoweekday() == 7:
-            market_date = date.today() - timedelta(days=2)
-        else:
-            market_date = date.today()
-
         # Verify if the csv file is already present
         file_name = Path(ticker + ".csv")
 
@@ -48,7 +41,7 @@ class HistoricalUtils:
                 break
             else:
                 try:
-                    historical_df = yfinance.download(ticker, INVESTING_FIRST_DATE, market_date)
+                    historical_df = yfinance.download(ticker, INVESTING_FIRST_DATE)
                     historical_df.to_csv(file_name)
                 except Exception as e:
                     logger.error("Not possible to get historical data from internet:" + str(e))
@@ -56,26 +49,6 @@ class HistoricalUtils:
 
         if not file_name.is_file():
             raise Exception("Not possible to get historical data from internet for " + str(file_name))
-
-        # Verify if dates are covered by the start date and end date
-        min_date = date.fromisoformat(historical_df["Date"].iloc[0])
-        max_date = date.fromisoformat(historical_df["Date"].iloc[-1])
-
-        # If market date is out of bound, download the historical data from Yahoo
-        if market_date < min_date:
-            try:
-                historical_df = yfinance.download(ticker, market_date, max_date)
-                # Create a csv file with the data
-                historical_df.to_csv(file_name)
-            except Exception as e:
-                logger.error("Not possible to get historical data from internet:" + str(e))
-        if market_date > max_date:
-            try:
-                historical_df = yfinance.download(ticker, min_date, market_date)
-                # Create a csv file with the data
-                historical_df.to_csv(file_name)
-            except Exception as e:
-                logger.error("Not possible to get historical data from internet:" + str(e))
 
         return historical_df
 
