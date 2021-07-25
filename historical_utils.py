@@ -1,5 +1,5 @@
 import time
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 import pandas as pd
@@ -27,7 +27,12 @@ class HistoricalUtils:
         :return: dataframe of ticker's historical data
         """
 
-        market_date = date.today()
+        if date.today().isoweekday() == 6:
+            market_date = date.today() - timedelta(days=1)
+        elif date.today().isoweekday() == 7:
+            market_date = date.today() - timedelta(days=2)
+        else:
+            market_date = date.today()
 
         # Verify if the csv file is already present
         file_name = Path(ticker + ".csv")
@@ -72,8 +77,6 @@ class HistoricalUtils:
             except Exception as e:
                 logger.error("Not possible to get historical data from internet:" + str(e))
 
-        historical_df["Date"] = historical_df.index
-
         return historical_df
 
     def get_market_date(self, req_date):
@@ -83,7 +86,7 @@ class HistoricalUtils:
         :param req_date: Date that we want historical data
         :return: Market date closest to the requested date
         """
-        return max(filter(lambda x: x <= req_date, self.historical_df['Date']))
+        return max(filter(lambda x: date.fromisoformat(x) <= req_date, self.historical_df['Date']))
 
     def _get_item(self, req_date, item):
         """
