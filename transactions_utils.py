@@ -1,5 +1,4 @@
 from datetime import date
-import os
 
 import pandas as pd
 
@@ -105,7 +104,7 @@ class TransactionsUtils:
 
 def main():
     # Create an instance of Transactions Utils
-    transactions_list = TransactionsUtils("all", transaction_file_path)
+    transactions_list = TransactionsUtils("all")
     print("Number of transactions = " + str(transactions_list.get_transactions_number()))
 
     transactions = transactions_list.get_transactions(date.today())

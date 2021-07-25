@@ -3,6 +3,7 @@ FROM python:3.8-slim-buster
 WORKDIR /usr/src/app
 
 COPY requirements.txt ./
+COPY config.py ./config.py
 COPY finance_utils.py ./
 COPY historical_utils.py ./
 COPY portfolio_utils.py ./
