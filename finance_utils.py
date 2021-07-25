@@ -11,6 +11,7 @@ from portfolio_utils import calculate_value
 from transactions_utils import TransactionsUtils
 from config import total_return_path
 from utils.errors_finder import find_errors_in_logs
+from utils.s3_client import send_file
 
 
 def calculate_total_return(year):
@@ -86,6 +87,8 @@ def main():
         f.write("</body>")
         f.write("</html>")
         f.close()
+
+        send_file(file_name)
 
     except Exception as err:
         print("Exception error on total_return edition: ", err)
