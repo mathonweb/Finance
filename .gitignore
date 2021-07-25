@@ -1,5 +1,7 @@
 *config.py
 .idea/*
 docs/*
-total_return.txt
 *__pycache__*
+*.csv
+index.html
+*.log
