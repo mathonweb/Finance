@@ -19,6 +19,7 @@ def send_file(file_name):
     try:
         s3 = boto3.client('s3')
         response = s3.upload_file(file_name, bucket_name, file_name)
+        logger.info("S3 upload file response: " + str(response))
     except ClientError as e:
         logger.error(e)
         return False

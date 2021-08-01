@@ -12,6 +12,7 @@ from transactions_utils import TransactionsUtils
 from config import total_return_path
 from utils.errors_finder import find_errors_in_logs
 from utils.s3_client import send_file
+from utils.logger import logger
 
 
 def calculate_total_return(year):
@@ -57,11 +58,36 @@ def calculate_total_return(year):
         return sol[0] * 100
 
 
-def main():
+def create_total_return_report(return_values):
 
     file_name = os.path.join(total_return_path)
 
     today_date = datetime.now(timezone('US/Eastern')).strftime("%Y-%m-%d %H:%M:%S")
+
+    try:
+        f = open(file_name, "w")
+
+        f.write("Performance \n")
+        f.write("Total return \n")
+
+        for year in return_values:
+            f.write(year + ": " + str(return_values[year]) + " %")
+            f.write("\n")
+
+        f.write("Generated at " + str(today_date) + " EST" + "\n")
+
+        if find_errors_in_logs(config.logs_file):
+            f.write("Errors happened, see logs file ")
+
+        f.close()
+
+        send_file(file_name)
+
+    except OSError as err:
+        logger.error("Exception error on total_return file creation: ", err)
+
+
+def main():
 
     return_val = dict()
 
@@ -69,29 +95,7 @@ def main():
         return_val[year] = round(calculate_total_return(year), 2)
         print(year + ": " + str(return_val[year]) + " %")
 
-    try:
-        f = open(file_name, "w")
-        f.write("<html>")
-        f.write("<body>")
-        f.write("Performance")
-        f.write("<br>")
-        f.write("Total return")
-
-        for year in return_val:
-            f.write("<br>" + year + ": " + str(return_val[year]) + " %")
-        f.write("<br>" + "Generated at " + str(today_date) + " EST")
-
-        if find_errors_in_logs(config.logs_file):
-            f.write("<br>" + "Errors happened, see logs file ")
-
-        f.write("</body>")
-        f.write("</html>")
-        f.close()
-
-        send_file(file_name)
-
-    except Exception as err:
-        print("Exception error on total_return edition: ", err)
+    create_total_return_report(return_val)
 
 
 if __name__ == '__main__':
