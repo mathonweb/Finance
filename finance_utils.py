@@ -9,7 +9,7 @@ from pytz import timezone
 import config
 from portfolio_utils import calculate_value
 from transactions_utils import TransactionsUtils
-from config import total_return_path
+from config import annual_returns_file
 from utils.errors_finder import find_errors_in_logs
 from utils.s3_client import send_file
 from utils.logger import logger
@@ -60,7 +60,7 @@ def calculate_total_return(year):
 
 def create_total_return_report(return_values):
 
-    file_name = os.path.join(total_return_path)
+    file_name = os.path.join(annual_returns_file)
 
     today_date = datetime.now(timezone('US/Eastern')).strftime("%Y-%m-%d %H:%M:%S")
 
