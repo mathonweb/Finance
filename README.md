@@ -1,16 +1,36 @@
 # Finance
 
-[![Python Versions](https://img.shields.io/pypi/pyversions/yt2mp3.svg)](https://pypi.python.org/pypi/yt2mp3/)
+![Python Versions](https://img.shields.io/pypi/pyversions/pandas)
+![Worfklow build](https://img.shields.io/github/workflow/status/mathonweb/Finance/CodeQL)
+![Last Commit](https://img.shields.io/github/last-commit/mathonweb/Finance)
+![License](https://img.shields.io/pypi/l/yfinance)
+![Repo watchers](https://img.shields.io/github/watchers/mathonweb/Finance?style=social)
+
 
 ## Description
-Reports finance information about investments and transactions
+Reports Annual returns from transactions file
 
 ## Prerequisite
 - Python 3.8
-- Scipy (<http://www.scipy.org>)
-- Pandas (<http://pandas.pydata.org/>)
-- yahoo_historical (<https://github.com/AndrewRPorter/yahoo-historical>)
-- mysql-connector (<https://pypi.org/project/mysql-connector/>)
+- S3 bucket
+- CSV File for transactions formatted like:
 
-## Installation
-- xxx
+| Ticker | Date       | Price | Quantity | Commission |
+|--------|------------|-------|----------|------------|
+| VUS.TO | 2012-05-16 | 33.36 | 100      | 6.99       |
+| XIC.TO | 2014-07-13 | 20.06 | 50       | 6.99       |
+| AC.TO  | 2020-11-24 | 23.17 | 200      | 6.99       |
+
+
+## Configuration
+- Edit config.py file to specify 
+  - Transaction file (transactions_file)
+  - S3 bucket name (bucket_name)
+  - Annual returns file (annual_returns_file)
+
+## Outcome
+- Txt file with Annual returns (annual_returns_file)
+- Log file (logs_file)
+
+## Local execution procedure
+- Run finance_utils.py, python3 finance_utils.py
