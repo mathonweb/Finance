@@ -133,10 +133,6 @@ class HistoricalUtils:
         return self._get_item(trading_date, 'Volume')
 
 
-def date_to_list(trading_date):
-    return [trading_date.year, trading_date.month, trading_date.day]
-
-
 def main():
 
     # Create an instance of Historical Utils
