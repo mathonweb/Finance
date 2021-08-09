@@ -131,22 +131,3 @@ class HistoricalUtils:
         :return: Volume
         """
         return self._get_item(trading_date, 'Volume')
-
-
-def main():
-
-    # Create an instance of Historical Utils
-    historical_list = HistoricalUtils("XSB.TO")
-
-    closest_date = historical_list.get_market_date(date(2019, 9, 1))
-
-    print("Open price = " + str(historical_list.get_open_price(closest_date)))
-    print("High price = " + str(historical_list.get_high_price(closest_date)))
-    print("Low price = " + str(historical_list.get_low_price(closest_date)))
-    print("Close price = " + str(historical_list.get_close_price(closest_date)))
-    print("Adjusted closed price = " + str(historical_list.get_adj_close_price(closest_date)))
-    print("Volume = " + str(historical_list.get_volume(closest_date)))
-
-
-if __name__ == '__main__':
-    main()

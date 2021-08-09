@@ -105,13 +105,3 @@ def calculate_value(calendar_date):
             value += row["Price"] * row["Quantity"]
 
     return value
-
-
-def main():
-    # Create an instance of Portfolio Utils
-    portfolio = PortfolioUtils(date(2020, 1, 1))
-    print(portfolio.get_portfolio())
-
-
-if __name__ == '__main__':
-    main()
