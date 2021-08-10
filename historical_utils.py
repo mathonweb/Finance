@@ -6,17 +6,15 @@ import yfinance
 
 from utils.logger import logger
 
-INVESTING_FIRST_DATE = date(2012, 1, 1)
 
-
-def _get_historical_data(ticker):
+def _get_historical_data(ticker, first_date_transaction):
     """
     Get historical data for a ticker from yahoo finance website
     :param ticker: Ticker name (Ex: CIF.TO)
     """
     file_name = Path(ticker + ".csv")
     try:
-        historical_df = yfinance.download(ticker, INVESTING_FIRST_DATE)
+        historical_df = yfinance.download(ticker, first_date_transaction)
         historical_df.to_csv(file_name)
     except Exception as e:
         logger.error("Not possible to get historical data from yahoo finance:" + str(file_name))
@@ -26,11 +24,11 @@ class HistoricalUtils:
     """
     Historical dataframe related to a ticker and methods to get info on the ticker
     """
-    def __init__(self, ticker):
-        self._historical_df = self._set_historical(ticker)
+    def __init__(self, ticker, first_date_transaction):
+        self._historical_df = self._set_historical(ticker, first_date_transaction)
 
     @staticmethod
-    def _set_historical(ticker):
+    def _set_historical(ticker, first_date_transaction):
         """
         Get the ticker historical data up to today
 
@@ -42,7 +40,7 @@ class HistoricalUtils:
         file_name = Path(ticker + ".csv")
 
         if not file_name.is_file():
-            _get_historical_data(ticker)
+            _get_historical_data(ticker, first_date_transaction)
 
         else:
             historical_df = pd.read_csv(file_name, skip_blank_lines=True, index_col=None, usecols=["Date", "Open",
@@ -54,7 +52,7 @@ class HistoricalUtils:
 
             # Update the historical csv file if it is outdated
             if date.today().isoweekday() and date.today() > historical_last_day:
-                _get_historical_data(ticker)
+                _get_historical_data(ticker, first_date_transaction)
 
         historical_df = pd.read_csv(file_name, skip_blank_lines=True, index_col=None, usecols=["Date", "Open",
                                                                                                "High", "Low",
