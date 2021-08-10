@@ -77,7 +77,7 @@ def create_total_return_report(return_values):
         f.write("Total return \n")
 
         for year in return_values:
-            f.write(year + ": " + str(return_values[year]) + " %")
+            f.write(str(year) + ": " + str(return_values[year]) + " %")
             f.write("\n")
 
         f.write("Generated at " + str(today_date) + " EST" + "\n")
@@ -101,9 +101,13 @@ def main():
     """
     return_val = dict()
 
-    for year in ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"]:
-        return_val[year] = round(calculate_total_return(year), 2)
-        print(year + ": " + str(return_val[year]) + " %")
+    transactions_util = TransactionsUtils("all")
+    first_date_transaction = transactions_util.get_first_date_transaction()
+    first_year_transaction = first_date_transaction.year
+
+    for year in range(first_year_transaction, date.today().year+1):
+        return_val[year] = round(calculate_total_return(str(year)), 2)
+        print(str(year) + ": " + str(return_val[year]) + " %")
 
     create_total_return_report(return_val)
 
