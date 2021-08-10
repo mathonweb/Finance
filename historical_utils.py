@@ -1,4 +1,3 @@
-import time
 from datetime import date
 from pathlib import Path
 
@@ -8,6 +7,21 @@ import yfinance
 from utils.logger import logger
 
 INVESTING_FIRST_DATE = date(2012, 1, 1)
+
+
+def _get_historical_data(ticker):
+    """
+    Get historical data for a ticker from yahoo finance website
+    :param ticker: Ticker name (Ex: CIF.TO)
+    :return: dataframe of ticker's historical data
+    """
+    file_name = Path(ticker + ".csv")
+    try:
+        historical_df = yfinance.download(ticker, INVESTING_FIRST_DATE)
+        historical_df.to_csv(file_name)
+        return historical_df
+    except Exception as e:
+        logger.error("Not possible to get historical data from yahoo finance:" + str(file_name))
 
 
 class HistoricalUtils:
@@ -29,27 +43,26 @@ class HistoricalUtils:
         # Verify if the csv file is already present
         file_name = Path(ticker + ".csv")
 
-        historical_df = None
-
-        nb_retry = 2
-        for _ in range(nb_retry):
-            if file_name.is_file():
-                historical_df = pd.read_csv(file_name, skip_blank_lines=True, index_col=None, usecols=["Date", "Open",
-                                                                                                       "High", "Low",
-                                                                                                       "Close",
-                                                                                                       "Adj Close",
-                                                                                                       "Volume"])
-                break
-            else:
-                try:
-                    historical_df = yfinance.download(ticker, INVESTING_FIRST_DATE)
-                    historical_df.to_csv(file_name)
-                except Exception as e:
-                    logger.error("Not possible to get historical data from internet:" + str(e))
-                    time.sleep(10)
-
         if not file_name.is_file():
-            raise Exception("Not possible to get historical data from internet for " + str(file_name))
+            _get_historical_data(ticker)
+
+        else:
+            historical_df = pd.read_csv(file_name, skip_blank_lines=True, index_col=None, usecols=["Date", "Open",
+                                                                                                   "High", "Low",
+                                                                                                   "Close",
+                                                                                                   "Adj Close",
+                                                                                                   "Volume"])
+            historical_last_day = date.fromisoformat(historical_df['Date'].iloc[-1])
+
+            # Update the historical csv file if it is outdated
+            if date.today().isoweekday() and date.today() > historical_last_day:
+                _get_historical_data(ticker)
+
+        historical_df = pd.read_csv(file_name, skip_blank_lines=True, index_col=None, usecols=["Date", "Open",
+                                                                                               "High", "Low",
+                                                                                               "Close",
+                                                                                               "Adj Close",
+                                                                                               "Volume"])
 
         return historical_df
 
