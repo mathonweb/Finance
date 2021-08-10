@@ -1,3 +1,4 @@
-total_return_path = "total_return.txt"
-logs_file = "logs.log"
+annual_returns_file = "total_return.txt"
 bucket_name = "finance.s3.bucket"
+logs_file = "logs.log"
+transactions_file = "transactions.csv"

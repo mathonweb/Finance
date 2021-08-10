@@ -11,8 +11,8 @@ class PortfolioUtils:
     Contains asset at a specific date
     """
     def __init__(self, trading_date):
-        self.trading_date = trading_date
-        self.portfolio = self._set_portfolio()
+        self._trading_date = trading_date
+        self._portfolio = self._set_portfolio()
 
     def _set_portfolio(self):
         """
@@ -22,7 +22,7 @@ class PortfolioUtils:
         """
         # Get transactions up to the trading date
         transactions_inst = TransactionsUtils("all")
-        transactions = transactions_inst.get_transactions(self.trading_date)
+        transactions = transactions_inst.get_transactions(self._trading_date)
 
         portfolio = pd.DataFrame(index=None, columns={"Ticker", "Mean cost", "Quantity", "Commission", "Price"})
 
@@ -62,7 +62,7 @@ class PortfolioUtils:
             # Complete with the closed price
             for index, row in portfolio.iterrows():
                 if row["Quantity"] > 0:
-                    portfolio.loc[index, "Price"] = HistoricalUtils(row["Ticker"]).get_close_price(self.trading_date)
+                    portfolio.loc[index, "Price"] = HistoricalUtils(row["Ticker"]).get_close_price(self._trading_date)
 
         return portfolio
 
@@ -87,7 +87,7 @@ class PortfolioUtils:
 
         :return: Asset portfolio
         """
-        return self.portfolio
+        return self._portfolio
 
 
 def calculate_value(calendar_date):
@@ -105,13 +105,3 @@ def calculate_value(calendar_date):
             value += row["Price"] * row["Quantity"]
 
     return value
-
-
-def main():
-    # Create an instance of Portfolio Utils
-    portfolio = PortfolioUtils(date(2020, 1, 1))
-    print(portfolio.get_portfolio())
-
-
-if __name__ == '__main__':
-    main()

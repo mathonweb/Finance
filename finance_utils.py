@@ -9,7 +9,7 @@ from pytz import timezone
 import config
 from portfolio_utils import calculate_value
 from transactions_utils import TransactionsUtils
-from config import total_return_path
+from config import annual_returns_file
 from utils.errors_finder import find_errors_in_logs
 from utils.s3_client import send_file
 from utils.logger import logger
@@ -20,7 +20,7 @@ def calculate_total_return(year):
     Measure the total return for one year
 
     :param year: year to measure the total return (1970 - current year)
-    :return: N/A
+    :return: Year total return (%)
     """
     date_year = int(year)
 
@@ -59,8 +59,14 @@ def calculate_total_return(year):
 
 
 def create_total_return_report(return_values):
+    """
+    Create the list with total return every year
 
-    file_name = os.path.join(total_return_path)
+    :param return_values: List of total return values
+    :return: N/A
+    """
+
+    file_name = os.path.join(annual_returns_file)
 
     today_date = datetime.now(timezone('US/Eastern')).strftime("%Y-%m-%d %H:%M:%S")
 
@@ -88,7 +94,11 @@ def create_total_return_report(return_values):
 
 
 def main():
+    """
+    Call function to calculate the Total Return for every year and create a report
 
+    :return: N/A
+    """
     return_val = dict()
 
     for year in ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"]:
