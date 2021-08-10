@@ -35,9 +35,9 @@ class TransactionsUtils:
 
         :param ticker: Ticker name (Ex: XIC.TO), all = for all tickers
         """
-        self.ticker = ticker
-        self.file = get_file(transactions_file)
-        self.transactions_df = self._set_transactions()
+        self._ticker = ticker
+        self._file = get_file(transactions_file)
+        self._transactions_df = self._set_transactions()
 
     def _set_transactions(self):
         """
@@ -46,10 +46,10 @@ class TransactionsUtils:
         :return: Dataframe with transactions
         """
 
-        file_df = pd.read_csv(self.file, index_col=None)
+        file_df = pd.read_csv(self._file, index_col=None)
 
-        if self.ticker != "all":
-            transactions_df = file_df.loc[file_df['Ticker'] == self.ticker]
+        if self._ticker != "all":
+            transactions_df = file_df.loc[file_df['Ticker'] == self._ticker]
         else:
             transactions_df = file_df
 
@@ -68,7 +68,7 @@ class TransactionsUtils:
 
         :return: Ticker name
         """
-        return self.ticker
+        return self._ticker
 
     def get_transactions(self, market_date):
         """
@@ -82,9 +82,9 @@ class TransactionsUtils:
             return None
 
         if market_date is None:
-            return self.transactions_df
+            return self._transactions_df
         else:
-            return self.transactions_df[self.transactions_df["Date"] <= market_date]
+            return self._transactions_df[self._transactions_df["Date"] <= market_date]
 
     def get_transactions_period(self, begin_date, end_date):
         """
@@ -102,8 +102,8 @@ class TransactionsUtils:
             logger.error("You must set a Date format for end_date: " + end_date)
             return None
 
-        return self.transactions_df[(begin_date <= self.transactions_df["Date"]) &
-                                    (self.transactions_df["Date"] <= end_date)]
+        return self._transactions_df[(begin_date <= self._transactions_df["Date"]) &
+                                    (self._transactions_df["Date"] <= end_date)]
 
     def get_transactions_number(self):
         """
@@ -111,4 +111,4 @@ class TransactionsUtils:
 
         :return: Number of transactions for the ticker(s)
         """
-        return len(self.transactions_df)
+        return len(self._transactions_df)

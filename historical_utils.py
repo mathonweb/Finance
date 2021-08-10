@@ -1,5 +1,5 @@
 import time
-from datetime import date, timedelta
+from datetime import date
 from pathlib import Path
 
 import pandas as pd
@@ -15,8 +15,7 @@ class HistoricalUtils:
     Historical dataframe related to a ticker and methods to get info on the ticker
     """
     def __init__(self, ticker):
-        self.ticker = ticker
-        self.historical_df = self._set_historical(ticker)
+        self._historical_df = self._set_historical(ticker)
 
     @staticmethod
     def _set_historical(ticker):
@@ -29,6 +28,8 @@ class HistoricalUtils:
 
         # Verify if the csv file is already present
         file_name = Path(ticker + ".csv")
+
+        historical_df = None
 
         nb_retry = 2
         for _ in range(nb_retry):
@@ -59,7 +60,7 @@ class HistoricalUtils:
         :param req_date: Date that we want historical data
         :return: Market date closest to the requested date
         """
-        return max(filter(lambda x: date.fromisoformat(x) <= req_date, self.historical_df['Date']))
+        return max(filter(lambda x: date.fromisoformat(x) <= req_date, self._historical_df['Date']))
 
     def _get_item(self, req_date, item):
         """
@@ -72,7 +73,7 @@ class HistoricalUtils:
 
         closest_date = self.get_market_date(req_date)
         item_value = 0
-        for index, row in self.historical_df.iterrows():
+        for index, row in self._historical_df.iterrows():
             if row["Date"] == closest_date:
                 item_value = row[item]
 
