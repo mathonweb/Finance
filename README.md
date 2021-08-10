@@ -33,4 +33,4 @@ Reports Annual returns from transactions file
 - Log file (logs_file)
 
 ## Local execution procedure
-- Run finance_utils.py, python3 finance_utils.py
+- Run python3 finance_utils.py
