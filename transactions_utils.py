@@ -112,3 +112,6 @@ class TransactionsUtils:
         :return: Number of transactions for the ticker(s)
         """
         return len(self._transactions_df)
+
+    def get_first_date_transaction(self):
+        return self._transactions_df["Date"][0]

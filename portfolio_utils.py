@@ -1,5 +1,3 @@
-from datetime import date
-
 import pandas as pd
 
 from historical_utils import HistoricalUtils
@@ -28,16 +26,22 @@ class PortfolioUtils:
 
         ticker_index = None
         mean_cost = None
+        historical = dict()
 
         # Get portfolio status at that date
         for index, row in transactions.iterrows():
             # Check if the ticker already exists
-            ticker_index = self._find_ticker(row["Ticker"], portfolio)
-            # Add the ticker in the Dataframe if it not exists in the portfolio
+            ticker = row["Ticker"]
+            ticker_index = self._find_ticker(ticker, portfolio)
+
             if ticker_index is None:
-                portfolio = portfolio.append({"Ticker": row["Ticker"], "Mean cost": 0, "Quantity": 0,
+                # Add the ticker in the Dataframe if it not exists in the portfolio
+                portfolio = portfolio.append({"Ticker": ticker, "Mean cost": 0, "Quantity": 0,
                                               "Commission": 0}, ignore_index=True)
-                ticker_index = self._find_ticker(row["Ticker"], portfolio)
+                ticker_index = self._find_ticker(ticker, portfolio)
+
+                # Get the historical for this ticker if it is first traded
+                historical[ticker] = HistoricalUtils(ticker, row["Date"])
 
             # Update the mean price, the quantity and the commission
             cost = portfolio.loc[ticker_index, "Mean cost"]
@@ -62,7 +66,7 @@ class PortfolioUtils:
             # Complete with the closed price
             for index, row in portfolio.iterrows():
                 if row["Quantity"] > 0:
-                    portfolio.loc[index, "Price"] = HistoricalUtils(row["Ticker"]).get_close_price(self._trading_date)
+                    portfolio.loc[index, "Price"] = historical[row["Ticker"]].get_close_price(self._trading_date)
 
         return portfolio
 
