@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY requirements.txt ./
 COPY config.py ./config.py
-COPY finance_utils.py ./
+COPY finance.py ./
 COPY historical_utils.py ./
 COPY portfolio_utils.py ./
 COPY transactions_utils.py ./
