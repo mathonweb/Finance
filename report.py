@@ -3,6 +3,7 @@ import pdfkit
 import matplotlib.pyplot as plt
 
 from utils.s3_client import get_file, send_file
+from config import annual_returns_file
 
 
 class Figures:
@@ -10,7 +11,7 @@ class Figures:
         self._annual_total_return = self._get_annual_total_return()
 
     def _get_annual_total_return(self):
-        filename = get_file("annual_total_return.csv")
+        filename = get_file(annual_returns_file)
         return pd.read_csv(filename)
 
     def create_annual_return_graph(self):

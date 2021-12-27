@@ -118,8 +118,8 @@ def main():
     finance = Finance()
     finance.create_total_annual_return()
     total_return_df = finance.get_total_annual_return()
-    total_return_df.to_csv("annual_total_return.csv", index=False, index_label=False)
-    send_file("annual_total_return.csv")
+    total_return_df.to_csv(annual_returns_file, index=False, index_label=False)
+    send_file(annual_returns_file)
 
 
 if __name__ == '__main__':
