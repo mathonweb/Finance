@@ -1,4 +1,6 @@
 import pandas as pd
+import pdfkit
+import matplotlib.pyplot as plt
 
 from utils.s3_client import get_file, send_file
 
@@ -12,10 +14,15 @@ class Figures:
         return pd.read_csv(filename)
 
     def create_annual_return_graph(self):
-        pass
+        plt.style.use("bmh")
+        fig, ax = plt.subplots()
+        ax.plot(self._annual_total_return["Year"], self._annual_total_return["Total return %"], marker="o")
+        ax.set_xlabel("Year")
+        ax.set_ylabel("Total return %")
+        fig.savefig("total_return.png")
 
     def create_annual_return_table(self):
-        return self._annual_total_return.to_html(index=False)
+        return self._annual_total_return.pivot_table(columns="Year").to_html()
 
 
 class Report:
@@ -27,9 +34,11 @@ class Report:
         f = open("financial_report.html", "w")
 
         report = "<html>" + \
-                 " <head> <title>Rapport de finance</title> </head>" +\
-                 " <body> <h2>Annual Total Return</h2>" + \
+                 " <head> <title>Rapport de finance</title> </head>" + \
+                 " <body> <h2>Performance</h2>" + \
+                 " <body> <h3>Annual Total Return</h3>" + \
                  self.figures.create_annual_return_table() + \
+                 "<img src="'total_return.png'">" + \
                  "</body>" + \
                  "</html>"
 
@@ -37,8 +46,12 @@ class Report:
 
         f.close()
 
+        self.figures.create_annual_return_graph()
+
+        pdfkit.from_file("financial_report.html", "financial_report.pdf")
+
     def send_report(self):
-        send_file("financial_report.html")
+        send_file("financial_report.pdf")
 
 
 if __name__ == '__main__':
