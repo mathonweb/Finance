@@ -14,7 +14,7 @@ from utils.logger import logger
 
 class Finance:
     def __init__(self):
-        self.total_annual_return = pd.DataFrame(columns={"year", "annual_return"})
+        self.total_annual_return = pd.DataFrame(columns={"Year", "Total return %"})
 
     def _calculate_total_return(self, year):
         """
@@ -63,7 +63,7 @@ class Finance:
         first_year_transaction = first_date_transaction.year
 
         for year in range(first_year_transaction, date.today().year + 1):
-            annual_return = {"year": str(year), "annual_return": round(self._calculate_total_return(year), 2)}
+            annual_return = {"Year": str(year), "Total return %": round(self._calculate_total_return(year), 2)}
             self.total_annual_return = self.total_annual_return.append(annual_return, ignore_index=True)
 
     def get_total_annual_return(self):
