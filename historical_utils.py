@@ -14,7 +14,7 @@ def _get_historical_data(ticker, first_date_transaction):
     """
     file_name = Path(ticker + ".csv")
     try:
-        historical_df = yfinance.download(ticker, first_date_transaction)
+        historical_df = yfinance.download(ticker, first_date_transaction, threads=False)
         historical_df.to_csv(file_name)
     except Exception as e:
         logger.error("Not possible to get historical data from yahoo finance:" + str(file_name))
