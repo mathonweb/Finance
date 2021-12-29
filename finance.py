@@ -1,17 +1,13 @@
 import calendar
-from datetime import date, datetime
-import os
+from datetime import date
 
 from scipy import optimize
 import numpy as np
-from pytz import timezone
 import pandas as pd
 
-import config
 from portfolio_utils import calculate_value
 from transactions_utils import TransactionsUtils
 from config import annual_returns_file
-from utils.errors_finder import find_errors_in_logs
 from utils.s3_client import send_file
 from utils.logger import logger
 
@@ -72,41 +68,6 @@ class Finance:
 
     def get_total_annual_return(self):
         return self.total_annual_return
-
-
-def create_total_return_report(return_values):
-    """
-    Create the list with total return every year
-
-    :param return_values: List of total return values
-    :return: N/A
-    """
-
-    file_name = os.path.join(annual_returns_file)
-
-    today_date = datetime.now(timezone('US/Eastern')).strftime("%Y-%m-%d %H:%M:%S")
-
-    try:
-        f = open(file_name, "w")
-
-        f.write("Performance \n")
-        f.write("Total return \n")
-
-        for annual_return in return_values.itertuples(index=False):
-            f.write(annual_return.year + ": " + str(annual_return.annual_return) + " %")
-            f.write("\n")
-
-        f.write("Generated at " + str(today_date) + " EST" + "\n")
-
-        if find_errors_in_logs(config.logs_file):
-            f.write("Errors happened, see logs file ")
-
-        f.close()
-
-        send_file(file_name)
-
-    except OSError as err:
-        logger.error("Exception error on total_return file creation: ", err)
 
 
 def main():
