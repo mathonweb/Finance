@@ -15,8 +15,8 @@ COPY transactions_utils.py ./
 COPY utils/errors_finder.py ./utils/errors_finder.py
 COPY utils/logger.py ./utils/logger.py
 COPY utils/s3_client.py ./utils/s3_client.py
+COPY execution.sh ./
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD python finance.py
-CMD python report.py
+CMD sh execution.sh
