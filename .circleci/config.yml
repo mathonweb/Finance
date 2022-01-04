@@ -16,7 +16,9 @@ jobs:
       - checkout
       - run:
           name: "Test"
-          command: pytest finance.py
+          command: |
+            pip install -r requirements.txt
+            pytest finance.py
 
   build:
     docker:
