@@ -46,7 +46,7 @@ jobs:
       - run:
           name: "Image push to DockerHub"
           command: |
-            docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+            echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
             docker push mathonweb/finance
 
 # Invoke jobs via workflows
