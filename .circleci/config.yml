@@ -39,6 +39,7 @@ jobs:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
     steps:
+      - checkout
       - setup_remote_docker:
             version: 19.03.13
       - run:
@@ -54,13 +55,10 @@ workflows:
   workflow:
     jobs:
       - test
-      - build:
-          requires:
-            - test
       - hold:
           type: approval
           requires:
-            - build
+            - test
       - deploy:
           requires:
             - hold
