@@ -30,7 +30,7 @@ jobs:
             version: 19.03.13
       - run:
           name: "Image creation"
-          command: docker build -t finance .
+          command: docker build -t mathonweb/finance .
 
   deploy:
     docker:
