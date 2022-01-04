@@ -16,7 +16,28 @@ jobs:
       - checkout
       - run:
           name: "Test"
-          command: python --version
+          command: pytest finance.py
+
+  build:
+    docker:
+      - image: cimg/base:stable
+
+    steps:
+      - checkout
+      - run:
+          name: "Image creation"
+          command: docker build -t finance_first_draft .
+
+  deploy:
+    docker:
+      - image: cimg/base:stable
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - run:
+          name: "Image push to DockerHub"
+          command: docker push finance_first_draft
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -24,3 +45,8 @@ workflows:
   workflow:
     jobs:
       - test
+      - build:
+          requires:
+            - test
+      - deploy:
+          type: approval

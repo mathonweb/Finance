@@ -1,6 +1,7 @@
 import calendar
 from datetime import date
 
+import pytest
 from scipy import optimize
 import numpy as np
 import pandas as pd
@@ -68,6 +69,10 @@ class Finance:
 
     def get_total_annual_return(self):
         return self.total_annual_return
+
+
+def test_finance():
+    assert True is True, pytest.fail("Test failed")
 
 
 def main():
