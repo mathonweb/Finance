@@ -30,7 +30,16 @@ jobs:
             version: 19.03.13
       - run:
           name: "Image creation"
-          command: docker build -t mathonweb/finance .
+          command: docker build --cache-from=app -t mathonweb/finance .
+      - run:
+          name: Save Docker image layer cache
+          command: |
+            mkdir -p /caches
+            docker save -o /caches/finance.tar finance
+      - save_cache:
+          key: v1-{{ .Branch }}-{{ epoch }}
+          paths:
+            - /caches/finance.tar
 
   deploy:
     docker:
@@ -43,7 +52,7 @@ jobs:
             version: 19.03.13
       - run:
           name: "Image push to DockerHub"
-          command: docker push mathonweb/finance:latest
+          command: docker push mathonweb/finance
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
