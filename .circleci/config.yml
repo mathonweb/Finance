@@ -26,6 +26,8 @@ jobs:
 
     steps:
       - checkout
+      - setup_remote_docker:
+            version: 19.03.13
       - run:
           name: "Image creation"
           command: docker build -t finance_first_draft .
@@ -37,6 +39,8 @@ jobs:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
     steps:
+      - setup_remote_docker:
+            version: 19.03.13
       - run:
           name: "Image push to DockerHub"
           command: docker push finance_first_draft
@@ -52,3 +56,5 @@ workflows:
             - test
       - deploy:
           type: approval
+          requires:
+            - build
