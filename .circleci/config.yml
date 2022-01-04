@@ -30,7 +30,7 @@ jobs:
             version: 19.03.13
       - run:
           name: "Image creation"
-          command: docker build -t finance_first_draft .
+          command: docker build -t finance .
 
   deploy:
     docker:
@@ -43,7 +43,7 @@ jobs:
             version: 19.03.13
       - run:
           name: "Image push to DockerHub"
-          command: docker push finance_first_draft
+          command: docker push mathonweb/finance:latest
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
