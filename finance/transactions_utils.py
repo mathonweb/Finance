@@ -1,9 +1,9 @@
 import sys
 from datetime import date
+import configparser
 
 import pandas as pd
 
-from config import transactions_file
 from utils.s3_client import get_file
 from utils.logger import logger
 
@@ -35,8 +35,11 @@ class TransactionsUtils:
 
         :param ticker: Ticker name (Ex: XIC.TO), all = for all tickers
         """
+        config = configparser.ConfigParser()
+        config.read_file(open('config.ini'))
+
         self._ticker = ticker
-        self._file = get_file(transactions_file)
+        self._file = get_file(config['DEFAULT']['transactions_file'])
         self._transactions_df = self._set_transactions()
 
     def _set_transactions(self):

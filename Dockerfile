@@ -6,7 +6,7 @@ RUN apt-get update
 RUN apt-get install -y wkhtmltopdf
 
 COPY requirements.txt ./
-COPY config.py ./
+COPY config.ini ./
 COPY execution.sh ./
 COPY finance/finance.py ./
 COPY finance/report.py ./

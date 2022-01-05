@@ -1,5 +1,6 @@
 import calendar
 from datetime import date
+import configparser
 
 import pytest
 from scipy import optimize
@@ -8,7 +9,6 @@ import pandas as pd
 
 from portfolio_utils import calculate_value
 from transactions_utils import TransactionsUtils
-from config import annual_returns_file
 from utils.s3_client import send_file
 from utils.logger import logger
 
@@ -81,11 +81,14 @@ def main():
 
     :return: N/A
     """
+    config = configparser.ConfigParser()
+    config.read_file(open('config.ini'))
+
     finance = Finance()
     finance.create_total_annual_return()
     total_return_df = finance.get_total_annual_return()
-    total_return_df.to_csv(annual_returns_file, index=False, index_label=False)
-    send_file(annual_returns_file)
+    total_return_df.to_csv(config['DEFAULT']['annual_returns_file'], index=False, index_label=False)
+    send_file(config['DEFAULT']['annual_returns_file'])
 
 
 if __name__ == '__main__':
