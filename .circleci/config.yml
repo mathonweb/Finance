@@ -18,7 +18,10 @@ jobs:
           name: "Test"
           command: |
             pip install -r requirements.txt
-            coverage run -m pytest finance/finance.py
+            coverage run -m pytest finance/finance.py --junitxml=junit_result.xml
+      - store_test_results:
+          path: .
+
 
   build:
     docker:
