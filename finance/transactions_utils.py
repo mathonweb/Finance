@@ -17,8 +17,8 @@ def validate_transactions(transactions_df):
     """
     for index, row in transactions_df.iterrows():
         if not (row["Date"] <= date.today() and
-                row['Price'] > 0 and
-                row['Quantity'] != 0):
+                float(row['Price']) > 0 and
+                float(row['Quantity']) != 0):
             return False
 
     return True
