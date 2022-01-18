@@ -4,7 +4,7 @@ from pathlib import Path
 import pandas as pd
 import yfinance
 
-from utils.logger import logger
+from finance.utils.logger import logger
 
 
 def _get_historical_data(ticker, first_date_transaction):

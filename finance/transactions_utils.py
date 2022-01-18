@@ -4,8 +4,8 @@ import configparser
 
 import pandas as pd
 
-from utils.s3_client import get_file
-from utils.logger import logger
+from finance.utils.s3_client import get_file
+from finance.utils.logger import logger
 
 
 def validate_transactions(transactions_df):

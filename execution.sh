@@ -1,2 +1,2 @@
-python finance.py
+python -m finance
 python report.py

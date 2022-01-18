@@ -4,7 +4,7 @@ import pandas as pd
 import pdfkit
 import matplotlib.pyplot as plt
 
-from utils.s3_client import get_file, send_file
+from finance.utils.s3_client import get_file, send_file
 
 
 class Figures:
