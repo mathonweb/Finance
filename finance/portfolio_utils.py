@@ -1,7 +1,7 @@
 import pandas as pd
 
-from historical_utils import HistoricalUtils
-from transactions_utils import TransactionsUtils
+from finance.historical_utils import HistoricalUtils
+from finance.transactions_utils import TransactionsUtils
 
 
 class PortfolioUtils:

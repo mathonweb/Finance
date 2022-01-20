@@ -1,9 +1,10 @@
+import configparser
+
 import pandas as pd
 import pdfkit
 import matplotlib.pyplot as plt
 
-from utils.s3_client import get_file, send_file
-from config import annual_returns_file
+from finance.utils.s3_client import get_file, send_file
 
 
 class Figures:
@@ -11,7 +12,10 @@ class Figures:
         self._annual_total_return = self._get_annual_total_return()
 
     def _get_annual_total_return(self):
-        filename = get_file(annual_returns_file)
+        config = configparser.ConfigParser()
+        config.read_file(open('config.ini'))
+
+        filename = get_file(config['DEFAULT']['annual_returns_file'])
         return pd.read_csv(filename)
 
     def create_annual_return_graph(self):
