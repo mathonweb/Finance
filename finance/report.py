@@ -56,6 +56,7 @@ class Report:
         pdfkit.from_file("financial_report.html", "financial_report.pdf")
 
     def send_report(self):
+        send_file("financial_report.html")
         send_file("financial_report.pdf")
 
 
