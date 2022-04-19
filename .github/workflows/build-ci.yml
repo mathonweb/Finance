@@ -5,8 +5,8 @@ on:
 
 jobs:
 
-  pre-commit:
-    runs-on: ubuntu-latest
+  #pre-commit:
+  #  runs-on: ubuntu-latest
 
   test:
     runs-on: ubuntu-latest

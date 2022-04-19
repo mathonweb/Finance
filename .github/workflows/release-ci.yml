@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: "Build the Docker image"
-      run: docker build . --file Dockerfile --tag mathonweb/finance
-    - name: "Push to DockerHub"
-    - run: echo ${{ secrets.DOCKERHUB_TOKEN }}| docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin docker push mathonweb/finance
+      - uses: actions/checkout@v3
+      - name: "Build the Docker image"
+        run: docker build . --file Dockerfile --tag mathonweb/finance
+      - name: "Push to DockerHub"
+        run: echo ${{ secrets.DOCKERHUB_TOKEN }}| docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin docker push mathonweb/finance
