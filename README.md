@@ -1,7 +1,7 @@
 # Finance
 
 ![Python Versions](https://img.shields.io/pypi/pyversions/pandas)
-![Worfklow build](https://circleci.com/gh/mathonweb/Finance/tree/master.svg?style=svg)
+[![Docker Image CI](https://github.com/mathonweb/Finance/actions/workflows/ci.yml/badge.svg)](https://github.com/mathonweb/Finance/actions/workflows/ci.yml)
 ![Last Commit](https://img.shields.io/github/last-commit/mathonweb/Finance)
 ![License](https://img.shields.io/pypi/l/yfinance)
 ![Repo watchers](https://img.shields.io/github/watchers/mathonweb/Finance?style=social)

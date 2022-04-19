@@ -1,0 +1,27 @@
+name: Docker Image CI
+
+on:
+  [push, pull_request]
+
+jobs:
+
+  #pre-commit:
+  #  runs-on: ubuntu-latest
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install requirements
+        run: pip install -r requirements.txt
+      - name: Test the code
+        run: coverage run -m pytest --junitxml=junit_result.xml
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag mathonweb/finance
