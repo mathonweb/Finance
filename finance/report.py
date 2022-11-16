@@ -1,4 +1,5 @@
 import configparser
+import datetime
 
 import pandas as pd
 import pdfkit
@@ -38,12 +39,15 @@ class Report:
 
         f = open("financial_report.html", "w")
 
+        now = datetime.datetime.now()
+
         report = "<html>" + \
                  " <head> <title>Rapport de finance</title> </head>" + \
                  " <body> <h2>Performance</h2>" + \
                  " <body> <h3>Annual Total Return</h3>" + \
                  self.figures.create_annual_return_table() + \
                  "<img src="'total_return.png'">" + \
+                 "<p>Build at <time>" + now.isoformat() + "</time>.</p>" + \
                  "</body>" + \
                  "</html>"
 
