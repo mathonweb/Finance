@@ -2,7 +2,6 @@ import configparser
 import datetime
 
 import pandas as pd
-import pdfkit
 import matplotlib.pyplot as plt
 
 from finance.utils.s3_client import get_file, send_file
@@ -57,11 +56,8 @@ class Report:
 
         self.figures.create_annual_return_graph()
 
-        pdfkit.from_file("financial_report.html", "financial_report.pdf")
-
     def send_report(self):
         send_file("financial_report.html")
-        send_file("financial_report.pdf")
 
 
 if __name__ == '__main__':

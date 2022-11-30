@@ -2,9 +2,6 @@ FROM python:3.8-slim-bullseye
 
 WORKDIR /usr/src/app
 
-RUN apt-get update
-RUN apt-get install -y wkhtmltopdf
-
 RUN export PYTHONPATH="%PYTHONPATH%:/usr/src/app/"
 
 COPY requirements.txt ./
